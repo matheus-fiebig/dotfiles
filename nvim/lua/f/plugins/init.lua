@@ -3,5 +3,6 @@ return {
   'DaikyXendo/nvim-material-icon',
   'matveyt/neoclip',
   'nvim-lualine/lualine.nvim',
-  'smoka7/hop.nvim'
+  'smoka7/hop.nvim',
+  'm4xshen/autoclose.nvim'
 }
