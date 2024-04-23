@@ -27,6 +27,7 @@ return {
         "tsx",
         "html",
         "css",
+        "go",
         "markdown",
         "markdown_inline",
         "lua",
