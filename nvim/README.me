@@ -1,24 +1,15 @@
 needs:
 
-1 - Cascadia nerd font 
+1 - Install Cascadia nerd font 
 
-2 - Choco Dependencies 
+2 - Choco/SUDo Dependencies 
 choco install neovim
 choco install omnisharp
 choco install python3
 choco install npm
 choco install ripgrep
 choco install omnisharp
-
 sudo apt install zip
-GO
-wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
-sudo tar -xvf go1.21.0.linux-amd64.tar.gz
-sudo mv go /usr/local
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-source ~/.profile
 
 3 - NPM Dependencies
 npm install -g tree-sitter-cli
@@ -28,10 +19,25 @@ npm install -g typescript typescript-language-server
 4 - Dotnet Dependencies
 dotnet tool install --global csharp-ls:
 
-5 - Just use this commands bellow
+Installing MONO
 sudo apt install ca-certificates gnupg
 sudo gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo "deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
 sudo apt update
 sudo  apt install mono-devel mono-complete
 npm install -g neovim
+
+5 - DAPS
+https://github.com/puremourning/vimspector?tab=readme-ov-file#c
+For C# :VimspectorInstall netcoredbg
+
+6 - Install GO
+GO
+rm -rf /usr/local/go
+wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
+sudo tar -xvf go1.22.0.linux-amd64.tar.gz
+sudo mv go /usr/local
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+source ~/.profile
