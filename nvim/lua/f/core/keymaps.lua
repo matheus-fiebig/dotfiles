@@ -36,4 +36,12 @@ keymap.set("n", "<leader>e", "<cmd>HopWord<CR>", { desc = "Hop" })
 -- trouble
 keymap.set("n", "<leader>tr", "<cmd>Trouble<CR>", { desc = "Trouble" })
 
-vim.cmd[[nnoremap <c-z> <nop>]]
+-- debug
+vim.cmd [[nnoremap <F5> <nop>]]
+keymap.set("n", "<F5>", ":DapContinue<CR>")
+keymap.set("n", "<F9>", ":DapToggleBreakpoint<CR>")
+keymap.set("n", "<F10>", ":DapStepOver<CR>")
+keymap.set("n", "<F11>", ":DapStepInto<CR>")
+keymap.set("n", "<F17>", ":DapTerminate<CR>")
+
+vim.cmd [[nnoremap <c-z> <nop>]]
