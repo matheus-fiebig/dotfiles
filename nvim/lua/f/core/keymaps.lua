@@ -34,7 +34,7 @@ keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 keymap.set("n", "<leader>e", "<cmd>HopWord<CR>", { desc = "Hop" })
 
 -- trouble
-keymap.set("n", "<leader>tr", "<cmd>Trouble<CR>", { desc = "Trouble" })
+keymap.set("n", "<leader>tr", "<cmd>TroubleToggle<CR>", { desc = "Trouble" })
 
 -- debug
 vim.cmd [[nnoremap <F5> <nop>]]
@@ -44,5 +44,9 @@ keymap.set("n", "<F10>", ":DapStepOver<CR>")
 keymap.set("n", "<F11>", ":DapStepInto<CR>")
 keymap.set("n", "<F17>", ":DapTerminate<CR>")
 keymap.set("n", "K", vim.lsp.buf.hover)
+
+-- set keymaps
+keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
 
 vim.cmd [[nnoremap <c-z> <nop>]]
