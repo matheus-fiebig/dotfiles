@@ -15,6 +15,7 @@ sudo apt install zip
 npm install -g tree-sitter-cli
 npm install -g tree-sitter
 npm install -g typescript typescript-language-server
+npm install -g @angular/language-server
 
 4 - Dotnet Dependencies
 dotnet tool install --global csharp-ls:
@@ -41,3 +42,6 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 source ~/.profile
+
+DELVE FOR GO
+go install github.com/go-delve/delve/cmd/dlv@latest
