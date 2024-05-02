@@ -1,12 +1,13 @@
 vim.g.mapleader = "\\"
 
 local keymap = vim.keymap -- for conciseness
+local api = vim.api       -- for conciseness
 
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
--- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
-keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
+-- nvim terminal
+keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal" })
+keymap.set({ "n", "v" }, "<leader>ft", ":FloatermToggle<CR>", { desc = "Toggle terminal" })
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
@@ -17,11 +18,10 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-keymap.set("n", "cleader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- copy and paste
-keymap.set("n", "f", "y", { desc = "Copy the current text" })
-keymap.set("v", "f", "y", { desc = "Copy the current text" })
+keymap.set({ "n", "v" }, "f", "y", { desc = "Copy the current text" })
 
 --code actions
 keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" })
@@ -43,5 +43,6 @@ keymap.set("n", "<F9>", ":DapToggleBreakpoint<CR>")
 keymap.set("n", "<F10>", ":DapStepOver<CR>")
 keymap.set("n", "<F11>", ":DapStepInto<CR>")
 keymap.set("n", "<F17>", ":DapTerminate<CR>")
+keymap.set("n", "K", vim.lsp.buf.hover)
 
 vim.cmd [[nnoremap <c-z> <nop>]]
