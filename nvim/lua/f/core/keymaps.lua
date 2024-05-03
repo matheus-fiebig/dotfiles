@@ -8,7 +8,8 @@ keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highligh
 
 -- telescope
 keymap.set("n", "<leader>H", ":Telescope commands<CR>", { desc = "Exit insert mode with jk" })
-keymap.set("n", "<leader>ff", ":Telescope file_browser<CR>", { desc = "Exit insert mode with jk" })
+keymap.set("n", "<leader>fb", ":Telescope file_browser<CR>", { desc = "Exit insert mode with jk" })
+keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Exit insert mode with jk" })
 keymap.set("n", "<leader>fc", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
 
 -- nvim terminal
