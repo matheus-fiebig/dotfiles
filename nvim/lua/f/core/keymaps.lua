@@ -5,12 +5,14 @@ local api = vim.api                                                             
 
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
+keymap.set({ "n", "v" }, "<C-Right>", "e", { desc = "Jump word" })
+keymap.set({ "n", "v" }, "<C-Left>", "b", { desc = "Jump word" })
 
 -- telescope
-keymap.set("n", "<leader>H", ":Telescope commands<CR>", { desc = "Exit insert mode with jk" })
-keymap.set("n", "<leader>fb", ":Telescope file_browser<CR>", { desc = "Exit insert mode with jk" })
-keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Exit insert mode with jk" })
-keymap.set("n", "<leader>fc", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+keymap.set("n", "<leader>H", ":Telescope commands<CR>")
+keymap.set("n", "<leader>fb", ":Telescope file_browser<CR>")
+keymap.set("n", "<leader>ff", ":Telescope find_files<CR>")
+keymap.set("n", "<leader>fc", "<cmd>Telescope live_grep<cr>")
 
 -- nvim terminal
 keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal" })
