@@ -26,18 +26,18 @@ return {
       end,
     }
 
-    lspconfig.tsserver.setup {
-      init_options = {
-        plugins = {
-          {
-            name = '@vue/typescript-plugin',
-            location = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server',
-            languages = { 'vue' },
-          },
-        },
-      },
-      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    }
+    --lspconfig.tsserver.setup {
+      --init_options = {
+        --plugins = {
+          --{
+            --name = '@vue/typescript-plugin',
+            --location = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server',
+            --languages = { 'vue' },
+          --},
+        --},
+      --},
+      --filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    --}
 
     lspconfig.volar.setup {}
     lspconfig.angularls.setup{}
