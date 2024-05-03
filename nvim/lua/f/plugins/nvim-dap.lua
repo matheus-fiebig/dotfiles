@@ -21,6 +21,15 @@ return {
         type = "coreclr",
         name = "launch - netcoredbg",
         request = "launch",
+        cwd = '${workspaceFolder}',
+        env = {
+          ASPNETCORE_ENVIRONMENT = function()
+            return "Local"
+          end,
+          --ASPNETCORE_URLS = function()
+            --return "http://localhost:5050"
+          --end,
+        },
         program = function() --To launch a project update the line bellow or add a dap-per-project
           local path = vim.fn.getcwd()
           local projectName = path:match("[^/]+$")
