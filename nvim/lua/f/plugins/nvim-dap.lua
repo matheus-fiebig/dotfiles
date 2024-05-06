@@ -45,7 +45,7 @@ return {
             return "Local"
           end,
           ASPNETCORE_URLS = function()
-            return "http://localhost:80"
+            return "https://localhost:80"
           end,
         },
         program = function() --To launch a project update the line bellow or add a dap-per-project
@@ -64,13 +64,14 @@ return {
             return "Local"
           end,
           ASPNETCORE_URLS = function()
-            return "http://localhost:80"
+            return "https://localhost:80"
           end,
         },
         program = function()
           vim.g.dotnet_build_project()
           local path = '/root/repos_newsat/newsat-cloud-api/src/Adapters/Raizen.NewSatCloud.API/bin/Debug/net8.0/Raizen.NewSatCloud.API.dll'
-          return vim.fn.input('',  path, 'file')
+          --return vim.fn.input('',  path, 'file')
+          return path
         end
       }
     }
