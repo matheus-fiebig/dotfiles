@@ -7,6 +7,7 @@ return {
   },
   config = function()
     local treesitter = require("nvim-treesitter.configs")
+    require('nvim-ts-autotag').setup()
 
     -- configure treesitter
     treesitter.setup({ -- enable syntax highlighting
