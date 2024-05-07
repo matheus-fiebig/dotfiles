@@ -19,8 +19,8 @@ keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal"
 keymap.set({ "n", "v" }, "<leader>ft", ":FloatermToggle<CR>", { desc = "Toggle terminal" })
 
 -- window management
---keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
---keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>l", "<cmd>tabn<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
 keymap.set("n", "<leader>h", "<cmd>tabp<CR>", {  noremap = true, silent = true, desc = "Go to previous tab" })
 keymap.set("n", "<leader>n", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
