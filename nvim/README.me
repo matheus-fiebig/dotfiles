@@ -1,33 +1,45 @@
 needs:
-0 - Install NVIM
+Install Cascadia nerd font 
+Install NVIM (<a href="https://github.com/neovim/neovim/blob/master/INSTALL.md">LINK</a>)
 
-1 - Install Cascadia nerd font 
-
-2 - Choco/SUDO Dependencies 
-choco install neovim
-choco install python3
-choco install npm
-choco install ripgrep
-choco install omnisharp
+Dependencies 
+sudo apt install python3
+sudo apt install npm - Para baixar a ultima versão do NODE: curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash - 
+                                                            sudo apt-get install -y nodejs
+sudo apt install ripgrep
+sudo apt install omnisharp (ACHO QUE NÃO PRECISA - Nao usei da ultima vez)
 sudo apt install zip
 
-3 - NPM Dependencies (MASON)
+NPM Dependencies (MASON)
 npm install -g tree-sitter
 npm install -g typescript typescript-language-server
 npm install -g @angular/language-server
 
-4 - Dotnet Dependencies
+Dotnet Dependencies
 Instalar o .NET
-dotnet tool install --global csharp-ls:
+  -1
+  wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  sudo dpkg -i packages-microsoft-prod.deb
+  rm packages-microsoft-prod.deb
+
+  -2
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-8.0
+
+  -3
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-6.0
+
+dotnet tool install --global csharp-ls
 
 Installing MONO
 sudo apt install ca-certificates gnupg
 sudo gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo "deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
 sudo apt update
-sudo  apt install mono-devel mono-complete
+sudo  apt install mono-devel mono-complete -y
 
-5 - Install GO
+Install GO
 GO
 rm -rf /usr/local/go
 wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
