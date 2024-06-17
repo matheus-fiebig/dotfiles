@@ -38,4 +38,3 @@ opt.swapfile = false
 --encodings
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
-opt.termencoding = "utf-8"

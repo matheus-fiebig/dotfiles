@@ -1,12 +1,12 @@
 vim.g.mapleader = "\\"
 
 local keymap = vim.keymap                                                       -- for conciseness
-local api = vim.api                                                             -- for conciseness
 
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
 keymap.set({ "n", "v" }, "<C-Right>", "e", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "<C-Left>", "b", { desc = "Jump word" })
+keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
 
 -- telescope
 keymap.set("n", "<leader>H", ":Telescope commands<CR>")
