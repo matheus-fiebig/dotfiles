@@ -8,6 +8,7 @@
   "doom-one.nvim": { "branch": "main", "commit": "76595eec15896a5da7f4e39ceeded6ffb0f4dc38" },
   "focus.nvim": { "branch": "master", "commit": "948b32e35f54b6900632312d51a1706fabdc12b8" },
   "friendly-snippets": { "branch": "main", "commit": "700c4a25caacbb4648c9a27972c2fe203948e0c2" },
+  "git-conflict.nvim": { "branch": "main", "commit": "bfd9fe6fba9a161fc199771d85996236a0d0faad" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "hop.nvim": { "branch": "master", "commit": "036462a345792279c58f2f6445756efab706f04a" },
   "lazy.nvim": { "branch": "main", "commit": "eb4957442e3182f051b0ae11da32e06d22c190e3" },
