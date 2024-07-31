@@ -1,12 +1,12 @@
 vim.g.mapleader = "\\"
 
-local keymap = vim.keymap                                                       -- for conciseness
-local api = vim.api                                                             -- for conciseness
+local keymap = vim.keymap -- for conciseness
 
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
 keymap.set({ "n", "v" }, "<C-Right>", "e", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "<C-Left>", "b", { desc = "Jump word" })
+keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
 
 -- telescope
 keymap.set("n", "<leader>H", ":Telescope commands<CR>")
@@ -16,13 +16,14 @@ keymap.set("n", "<leader>fc", "<cmd>Telescope live_grep<cr>")
 
 -- nvim terminal
 keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal" })
-keymap.set({ "n", "v" }, "<leader>ft", ":FloatermToggle<CR>", { desc = "Toggle terminal" })
+--keymap.set({ "n", "v" }, "<leader>ft", ":FloatermToggle<CR>", { desc = "Toggle terminal" })
+keymap.set({ "n", "v" }, "<leader>ft", "<cmd>terminal<CR>", { desc = "Toggle terminal" })
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>l", "<cmd>tabn<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
-keymap.set("n", "<leader>h", "<cmd>tabp<CR>", {  noremap = true, silent = true, desc = "Go to previous tab" })
+keymap.set("n", "<leader>k", "<cmd>tabp<CR>", {  noremap = true, silent = true, desc = "Go to previous tab" })
 keymap.set("n", "<leader>n", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- copy and paste
@@ -44,7 +45,7 @@ keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 keymap.set("n", "<leader>e", "<cmd>HopWord<CR>", { desc = "Hop" })
 
 -- trouble
-keymap.set("n", "<leader>tr", "<cmd>TroubleToggle<CR>", { desc = "Trouble" })
+keymap.set("n", "<leader>tr", "<cmd>Trouble<CR>1<CR><CR>", { desc = "Trouble" })
 
 -- debug
 vim.cmd [[nnoremap <F5> <nop>]]
