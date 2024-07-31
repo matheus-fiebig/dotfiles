@@ -5,6 +5,7 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "39e2eda76828d88b773cc27a3f61d2ad782c922d" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
+  "copilot.vim": { "branch": "release", "commit": "25f73977033c597d530c7ab0e211d99b60927d2d" },
   "doom-one.nvim": { "branch": "main", "commit": "76595eec15896a5da7f4e39ceeded6ffb0f4dc38" },
   "focus.nvim": { "branch": "master", "commit": "948b32e35f54b6900632312d51a1706fabdc12b8" },
   "friendly-snippets": { "branch": "main", "commit": "700c4a25caacbb4648c9a27972c2fe203948e0c2" },
