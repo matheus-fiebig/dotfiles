@@ -2,10 +2,15 @@ vim.g.mapleader = "\\"
 
 local keymap = vim.keymap -- for conciseness
 
+vim.cmd [[nnoremap <c-d> <nop>]]
+
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
 keymap.set({ "n", "v" }, "<C-Right>", "e", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "<C-Left>", "b", { desc = "Jump word" })
+keymap.set("n", "<C-d>", "<C-W>>", { desc = "Increase window size" })
+keymap.set("n", "<C-a>", "<C-W><", { desc = "Decrease window Size" })
+keymap.set("n", "<C-s>", "<C-W>=", { desc = "Decrease window Size" })
 keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
 
 -- telescope
@@ -16,6 +21,7 @@ keymap.set("n", "<leader>fc", "<cmd>Telescope live_grep<cr>")
 
 -- nvim terminal
 keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal" })
+
 --keymap.set({ "n", "v" }, "<leader>ft", ":FloatermToggle<CR>", { desc = "Toggle terminal" })
 keymap.set({ "n", "v" }, "<leader>ft", "<cmd>terminal<CR>", { desc = "Toggle terminal" })
 
@@ -40,10 +46,7 @@ keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end,
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
-
--- hoper
-keymap.set("n", "<leader>e", "<cmd>HopWord<CR>", { desc = "Hop" })
-
+--
 -- trouble
 keymap.set("n", "<leader>tr", "<cmd>Trouble<CR>1<CR><CR>", { desc = "Trouble" })
 
