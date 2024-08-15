@@ -1,4 +1,5 @@
 vim.g.mapleader = "\\"
+--vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
