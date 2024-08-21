@@ -9,9 +9,6 @@ vim.cmd [[nnoremap <c-d> <nop>]]
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
 keymap.set({ "n", "v" }, "<C-Right>", "e", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "<C-Left>", "b", { desc = "Jump word" })
-keymap.set("n", "<C-d>", "<C-W>>", { desc = "Increase window size" })
-keymap.set("n", "<C-a>", "<C-W><", { desc = "Decrease window Size" })
-keymap.set("n", "<C-s>", "<C-W>=", { desc = "Decrease window Size" })
 keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
 
 -- telescope
@@ -22,22 +19,23 @@ keymap.set("n", "<leader>fc", "<cmd>Telescope live_grep<cr>")
 
 -- nvim terminal
 keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal" })
-
---keymap.set({ "n", "v" }, "<leader>ft", ":FloatermToggle<CR>", { desc = "Toggle terminal" })
 keymap.set({ "n", "v" }, "<leader>ft", "<cmd>terminal<CR>", { desc = "Toggle terminal" })
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>l", "<cmd>tabn<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
-keymap.set("n", "<leader>k", "<cmd>tabp<CR>", {  noremap = true, silent = true, desc = "Go to previous tab" })
+keymap.set("n", "<leader>k", "<cmd>tabp<CR>", { noremap = true, silent = true, desc = "Go to previous tab" })
 keymap.set("n", "<leader>n", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+keymap.set("n", "<C-d>", "<C-W>>", { desc = "Increase window size" })
+keymap.set("n", "<C-a>", "<C-W><", { desc = "Decrease window Size" })
+keymap.set("n", "<C-s>", "<C-W>=", { desc = "Equalize window Size" })
 
 -- copy and paste
 keymap.set({ "n", "v" }, "f", "y", { desc = "Copy the current text" })
 
 --quickfix
-keymap.set("n", "<leader>qf", "<cmd>copen<CR>", {desc = "Open quickfix"})
+keymap.set("n", "<leader>qf", "<cmd>copen<CR>", { desc = "Open quickfix" })
 keymap.set({ "n", "v" }, "[q", "<cmd>cprev<CR>", { desc = "Prev quickfix" })
 keymap.set({ "n", "v" }, "]q", "<cmd>cnext<CR>", { desc = "Next quickfix" })
 
@@ -63,5 +61,11 @@ keymap.set("n", "K", vim.lsp.buf.hover)
 -- tree view
 keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
+
+--ufo
+vim.cmd [[nnoremap <C-f> <nop>]]
+keymap.set('n', '<C-f><C-f>', "<cmd>foldopen<CR>")
+keymap.set('n', '<C-f>', "<cmd>foldclose<CR>")
+
 
 vim.cmd [[nnoremap <c-z> <nop>]]
