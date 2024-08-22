@@ -12,6 +12,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("f.plugins")
-require('lualine').setup({
-    options = { theme = require 'lualine.themes.everforest' }
-})
+
