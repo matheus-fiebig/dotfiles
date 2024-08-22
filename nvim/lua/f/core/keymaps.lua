@@ -1,4 +1,4 @@
-vim.g.mapleader = "\\"
+tim.g.mapleader = "\\"
 --vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
@@ -47,7 +47,7 @@ keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 --
 -- trouble
-keymap.set("n", "<leader>tr", "<cmd>Trouble<CR>1<CR><CR>", { desc = "Trouble" })
+keymap.set("n", "<leader>tr", "<cmd>Trouble<CR><CR>", { desc = "Trouble" })
 
 -- debug
 vim.cmd [[nnoremap <F5> <nop>]]
