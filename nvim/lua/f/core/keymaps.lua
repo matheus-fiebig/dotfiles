@@ -1,10 +1,8 @@
-vim.g.mapleader = "\\"
---vim.g.mapleader = " "
+vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
 vim.cmd [[nnoremap <c-d> <nop>]]
-
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
 keymap.set({ "n", "v" }, "<C-Right>", "e", { desc = "Jump word" })
@@ -25,7 +23,7 @@ keymap.set({ "n", "v" }, "<leader>ft", "<cmd>terminal<CR>", { desc = "Toggle ter
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>l", "<cmd>tabn<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
-keymap.set("n", "<leader>k", "<cmd>tabp<CR>", { noremap = true, silent = true, desc = "Go to previous tab" })
+keymap.set("n", "<leader>h", "<cmd>tabp<CR>", { noremap = true, silent = true, desc = "Go to previous tab" })
 keymap.set("n", "<leader>n", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 keymap.set("n", "<C-d>", "<C-W>>", { desc = "Increase window size" })
 keymap.set("n", "<C-a>", "<C-W><", { desc = "Decrease window Size" })
@@ -45,17 +43,16 @@ keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end,
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
---
+
 -- trouble
-keymap.set("n", "<leader>tr", "<cmd>Trouble<CR><CR>", { desc = "Trouble" })
+keymap.set("n", "<leader>tr", "<cmd>Trouble<CR>", { desc = "Trouble" })
 
 -- debug
 vim.cmd [[nnoremap <F5> <nop>]]
-keymap.set("n", "<F5>", ":DapContinue<CR>")
-keymap.set("n", "<F9>", ":DapToggleBreakpoint<CR>")
-keymap.set("n", "<F10>", ":DapStepOver<CR>")
-keymap.set("n", "<F11>", ":DapStepInto<CR>")
-keymap.set("n", "<F17>", ":DapTerminate<CR>")
+keymap.set("n", "<leader>f5", ":DapContinue<CR>")
+keymap.set("n", "<leader>f9", ":DapToggleBreakpoint<CR>")
+keymap.set("n", "<leader>f5", ":DapStepOver<CR>")
+keymap.set("n", "<leader>f11", ":DapStepInto<CR>")
 keymap.set("n", "K", vim.lsp.buf.hover)
 
 -- tree view
