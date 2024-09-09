@@ -3,10 +3,15 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 
 vim.cmd [[nnoremap <c-d> <nop>]]
+vim.cmd [[nnoremap # <nop>]]
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
 keymap.set({ "n", "v" }, "<C-Right>", "e", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "<C-Left>", "b", { desc = "Jump word" })
+keymap.set({ "n", "v" }, "<C-l>", "e", { desc = "Jump word" })
+keymap.set({ "n", "v" }, "<C-h>", "b", { desc = "Jump word" })
+keymap.set({ "n", "v" }, "{", "{", { desc = "Jump word" })
+keymap.set({ "n", "v" }, "#", "}", { desc = "Jump word" })
 keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
 
 -- telescope
@@ -32,11 +37,6 @@ keymap.set("n", "<C-s>", "<C-W>=", { desc = "Equalize window Size" })
 -- copy and paste
 keymap.set({ "n", "v" }, "f", "y", { desc = "Copy the current text" })
 
---quickfix
-keymap.set("n", "<leader>qf", "<cmd>copen<CR>", { desc = "Open quickfix" })
-keymap.set({ "n", "v" }, "[q", "<cmd>cprev<CR>", { desc = "Prev quickfix" })
-keymap.set({ "n", "v" }, "]q", "<cmd>cnext<CR>", { desc = "Next quickfix" })
-
 --code actions
 keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" })
 keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, { desc = "Format" })
@@ -49,10 +49,10 @@ keymap.set("n", "<leader>tr", "<cmd>Trouble<CR>", { desc = "Trouble" })
 
 -- debug
 vim.cmd [[nnoremap <F5> <nop>]]
-keymap.set("n", "<leader>f5", ":DapContinue<CR>")
-keymap.set("n", "<leader>f9", ":DapToggleBreakpoint<CR>")
-keymap.set("n", "<leader>f5", ":DapStepOver<CR>")
-keymap.set("n", "<leader>f11", ":DapStepInto<CR>")
+keymap.set("n", "<leader>5", ":DapContinue<CR>")
+keymap.set("n", "<leader>7", ":DapStepOver<CR>")
+keymap.set("n", "<leader>8", ":DapStepInto<CR>")
+keymap.set("n", "<leader>9", ":DapToggleBreakpoint<CR>")
 keymap.set("n", "K", vim.lsp.buf.hover)
 
 -- tree view
@@ -64,5 +64,11 @@ vim.cmd [[nnoremap <C-f> <nop>]]
 keymap.set('n', '<C-f><C-f>', "<cmd>foldopen<CR>")
 keymap.set('n', '<C-f>', "<cmd>foldclose<CR>")
 
+--refactor
+vim.keymap.set(
+    {"n", "x"},
+    "<leader>rr",
+    function() require('refactoring').select_refactor() end
+)
 
 vim.cmd [[nnoremap <c-z> <nop>]]
