@@ -1,1 +1,1 @@
-require("highlight_yank")
+--require('user.highlight_yank')

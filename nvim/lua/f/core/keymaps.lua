@@ -4,6 +4,7 @@ local keymap = vim.keymap -- for conciseness
 
 vim.cmd [[nnoremap <c-d> <nop>]]
 vim.cmd [[nnoremap # <nop>]]
+
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
 keymap.set({ "n", "v" }, "<C-Right>", "e", { desc = "Jump word" })
@@ -13,6 +14,8 @@ keymap.set({ "n", "v" }, "<C-h>", "b", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "{", "{", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "#", "}", { desc = "Jump word" })
 keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
+keymap.set({ "n", "v" }, "s", "f", { desc = "Find foward" })
+keymap.set({ "n", "v" }, "S", "F", { desc = "Find backwards" })
 
 -- telescope
 keymap.set("n", "<leader>H", ":Telescope commands<CR>")
