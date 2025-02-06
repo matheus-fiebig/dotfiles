@@ -67,11 +67,4 @@ vim.cmd [[nnoremap <C-f> <nop>]]
 keymap.set('n', '<C-f><C-f>', "<cmd>foldopen<CR>")
 keymap.set('n', '<C-f>', "<cmd>foldclose<CR>")
 
---refactor
-vim.keymap.set(
-    {"n", "x"},
-    "<leader>rr",
-    function() require('refactoring').select_refactor() end
-)
-
 vim.cmd [[nnoremap <c-z> <nop>]]
