@@ -22,6 +22,7 @@ keymap.set("n", "<leader>H", ":Telescope commands<CR>")
 keymap.set("n", "<leader>fb", ":Telescope file_browser<CR>")
 keymap.set("n", "<leader>ff", ":Telescope find_files<CR>")
 keymap.set("n", "<leader>fc", "<cmd>Telescope live_grep<cr>")
+keymap.set("n", "<leader>gf", ":Telescope git_status<CR>")
 
 -- nvim terminal
 keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal" })
@@ -46,9 +47,6 @@ keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end,
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
-
--- trouble
-keymap.set("n", "<leader>tr", "<cmd>Trouble<CR>", { desc = "Trouble" })
 
 -- debug
 vim.cmd [[nnoremap <F5> <nop>]]
