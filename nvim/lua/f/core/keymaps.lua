@@ -53,6 +53,7 @@ keymap.set("n", "<leader>5", ":DapContinue<CR>")
 keymap.set("n", "8", ":DapStepOver<CR>")
 keymap.set("n", "9", ":DapStepInto<CR>")
 keymap.set("n", "<leader>9", ":DapToggleBreakpoint<CR>")
+--keymap.set('n', '<leader>g', ":lua require'dap'.goto()<CR>", { noremap = true, silent = true }) C# does not support
 keymap.set("n", "K", vim.lsp.buf.hover)
 
 -- tree view

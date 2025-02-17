@@ -19,7 +19,7 @@ return {
                     local current = p:cwd()
                     p:set_cwd(current == root and cwd or root)
                     p:find()
-                end,
+                end
             },
         },
     },
