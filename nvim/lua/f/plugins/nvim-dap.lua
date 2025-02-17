@@ -27,11 +27,8 @@ vim.g.dotnet_build_project = function()
     print('\nCmd to execute: ' .. cmd)
 
     local f = os.execute(cmd)
-    if f == 0 then
-        print('\nBuild: ✔️ ')
-    else
-        print('\nBuild: ❌ (code: ' .. f .. ')')
-    end
+    local snacks = require('snacks')
+    snacks.notifier('Build finished - code ' .. f, 2)
 end
 
 vim.g.dotnet_dll = function()
@@ -39,6 +36,7 @@ vim.g.dotnet_dll = function()
     if vim.g['dotnet_last_dll'] ~= nil then
         default_path = vim.g['dotnet_last_dll']
     end
+
     vim.g['dotnet_last_dll'] = vim.fn.input('Path to your dll ', default_path, 'file')
     return vim.g['dotnet_last_dll'];
 end

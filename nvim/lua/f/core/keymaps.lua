@@ -19,10 +19,9 @@ keymap.set({ "n", "v" }, "S", "F", { desc = "Find backwards" })
 
 -- telescope
 keymap.set("n", "<leader>H", ":Telescope commands<CR>")
-keymap.set("n", "<leader>fb", ":Telescope file_browser<CR>")
-keymap.set("n", "<leader>ff", ":Telescope find_files<CR>")
-keymap.set("n", "<leader>fc", "<cmd>Telescope live_grep<cr>")
-keymap.set("n", "<leader>gf", ":Telescope git_status<CR>")
+keymap.set("n", "<leader>ff", "<cmd>lua Snacks.picker.files()<CR>")
+keymap.set("n", "<leader>fc", "<cmd>lua Snacks.picker.pick('grep')<CR>")
+keymap.set("n", "<leader>gf", "<cmd>lua Snacks.picker.git_files()<CR>")
 
 -- nvim terminal
 keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal" })
@@ -51,14 +50,13 @@ keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 -- debug
 vim.cmd [[nnoremap <F5> <nop>]]
 keymap.set("n", "<leader>5", ":DapContinue<CR>")
-keymap.set("n", "<leader>7", ":DapStepOver<CR>")
-keymap.set("n", "<leader>8", ":DapStepInto<CR>")
+keymap.set("n", "8", ":DapStepOver<CR>")
+keymap.set("n", "9", ":DapStepInto<CR>")
 keymap.set("n", "<leader>9", ":DapToggleBreakpoint<CR>")
 keymap.set("n", "K", vim.lsp.buf.hover)
 
 -- tree view
-keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
+keymap.set("n", "<leader>ee", "<cmd>lua Snacks.picker.explorer()<CR>", { desc = "Toggle file explorer" })
 
 --ufo
 vim.cmd [[nnoremap <C-f> <nop>]]
