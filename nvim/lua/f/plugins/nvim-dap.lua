@@ -44,41 +44,49 @@ vim.g.dotnet_dll = function()
 end
 
 return {
-    'mfussenegger/nvim-dap',
-    config = function()
-        local dap = require('dap')
-        local debuggers_folder = vim.fn.stdpath('data') .. "/mason"
+    {
+        'leoluz/nvim-dap-go',
+        config = function()
+            require('dap-go').setup()
+        end
+    },
+    {
+        'mfussenegger/nvim-dap',
+        config = function()
+            local dap = require('dap')
+            local debuggers_folder = vim.fn.stdpath('data') .. "/mason"
 
-        define_colors()
+            define_colors()
 
-        dap.adapters.coreclr = {
-            type = "executable",
-            command = debuggers_folder .. "/packages/netcoredbg/netcoredbg",
-            args = { "--interpreter=vscode" }
-        }
-
-        dap.configurations.cs = {
-            {
-                type = "coreclr",
-                name = "attach - netcoredbg",
-                request = "attach",
-                processId = require('dap.utils').pick_process,
-            },
-            {
-                type = "coreclr",
-                name = "launch - netcoredbg",
-                request = "launch",
-                cwd = '${workspaceFolder}',
-                env = {
-                    ASPNETCORE_ENVIRONMENT = function()
-                        return "Development"
-                    end,
-                },
-                program = function()
-                    vim.g.dotnet_build_project()
-                    return vim.g.dotnet_dll();
-                end
+            dap.adapters.coreclr = {
+                type = "executable",
+                command = debuggers_folder .. "/packages/netcoredbg/netcoredbg",
+                args = { "--interpreter=vscode" }
             }
-        }
-    end,
+
+            dap.configurations.cs = {
+                {
+                    type = "coreclr",
+                    name = "attach - netcoredbg",
+                    request = "attach",
+                    processId = require('dap.utils').pick_process,
+                },
+                {
+                    type = "coreclr",
+                    name = "launch - netcoredbg",
+                    request = "launch",
+                    cwd = '${workspaceFolder}',
+                    env = {
+                        ASPNETCORE_ENVIRONMENT = function()
+                            return "Development"
+                        end,
+                    },
+                    program = function()
+                        vim.g.dotnet_build_project()
+                        return vim.g.dotnet_dll();
+                    end
+                }
+            }
+        end,
+    }
 }
