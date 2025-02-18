@@ -1,2 +1,2 @@
-require('lua.f.user.autocmd')
-require('lua.f.user.dap-utils')
+require('f.user.autocmd')
+require('f.user.dap-utils')

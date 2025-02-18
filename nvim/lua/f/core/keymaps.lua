@@ -57,7 +57,7 @@ keymap.set("n", "<leader>9", ":DapToggleBreakpoint<CR>")
 keymap.set("n", "K", vim.lsp.buf.hover)
 
 -- tree view
-keymap.set("n", "<leader>ee", "<cmd>lua Snacks.picker.explorer()<CR>", { desc = "Toggle file explorer" })
+keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR><cmd>NvimTreeToggle<CR><cmd>lua Snacks.explorer.open({replace_netrw = true})<CR>", { desc = "Toggle file explorer" })
 
 --ufo
 vim.cmd [[nnoremap <C-f> <nop>]]
