@@ -19,10 +19,8 @@ keymap.set({ "n", "v" }, "S", "F", { desc = "Find backwards" })
 
 -- telescope
 keymap.set("n", "<leader>H", ":Telescope commands<CR>")
---keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
---keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>")
-keymap.set("n", "<leader>ff", "<cmd>lua Snacks.picker.files()<CR>")
-keymap.set("n", "<leader>fc", "<cmd>lua Snacks.picker.grep()<CR>")
+keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
+keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>")
 keymap.set("n", "<leader>gf", "<cmd>Telescope git_status<CR>")
 
 -- nvim terminal
