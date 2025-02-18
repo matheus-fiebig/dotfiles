@@ -1,17 +1,9 @@
 return {
     'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
     opts = {
         picker = {
-            win = {
-                input = {
-                    keys = {
-                        ["<a-c>"] = {
-                            "toggle_cwd",
-                            mode = { "n", "i" },
-                        },
-                    },
-                },
-            },
             actions = {
                 toggle_cwd = function(p)
                     local root = LazyVim.root({ buf = p.input.filter.current_buf, normalize = true })
