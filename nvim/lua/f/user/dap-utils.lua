@@ -30,11 +30,15 @@ local function build_dotnet(execute_previous)
         vim.g['dotnet_last_proj_path'] = path
     end
 
+    local notify_opt = {
+        title = 'Build'
+    }
+
     local cmd = 'dotnet build -c Debug ' .. default_path .. ' > /dev/null'
-    Snacks.notifier('\nCmd to execute: ' .. cmd, "info")
+    Snacks.notifier('Cmd to execute: \n' .. cmd, "info", notify_opt)
 
     local f = os.execute(cmd)
-    Snacks.notifier('Build finished with code ' .. f, "info")
+    Snacks.notifier('Finished with code ' .. f, "info", notify_opt)
 end
 
 local function run_api_dotnet(execute_previous)
@@ -51,6 +55,11 @@ local function run_api_dotnet(execute_previous)
         vim.g['dotnet_last_dll'] = vim.fn.input('Path to your dll ', default_path, 'file')
     end
 
+    local notify_opt = {
+        title = 'Run'
+    }
+    Snacks.notifier('Running ' .. vim.g['dotnet_last_dll'], "info", notify_opt);
+
     return vim.g['dotnet_last_dll'];
 end
 
@@ -58,7 +67,7 @@ function Build_and_run_dotnet()
     local mode = 'n'
 
     if vim.g['dotnet_last_dll'] ~= nil and vim.g['dotnet_last_proj_path'] ~= nil then
-        mode = vim.fn.input('Execute previous steps (y/n)?')
+        mode = vim.fn.input('Run previous execution steps (y/n)? ')
         mode = mode:match("^%s*(.-)%s*$")
     end
 
@@ -73,6 +82,8 @@ end
 --                   --
 -----------------------
 function Show_variable_values()
-    local word_under_cursor = vim.expand("<cword>")
-    Snacks.notifier(word_under_cursor, "warn")
+    if require("dap").status() ~= nil then
+        local word_under_cursor = vim.fn.expand("<cword>")
+        require("dapui").eval(word_under_cursor)
+    end
 end
