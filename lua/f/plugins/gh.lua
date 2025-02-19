@@ -1,14 +1,12 @@
 return {
-    "ldelossa/gh.nvim",
-    dependencies = {
-        {
-            "ldelossa/litee.nvim",
-            config = function()
-                require("litee.lib").setup()
-            end,
-        },
+    'pwntester/octo.nvim',
+    requires = {
+        'nvim-lua/plenary.nvim',
+        --'nvim-telescope/telescope.nvim',
+        'folke/snacks.nvim',
+        'nvim-tree/nvim-web-devicons',
     },
     config = function()
-        require("litee.gh").setup()
-    end,
+        require "octo".setup()
+    end
 }
