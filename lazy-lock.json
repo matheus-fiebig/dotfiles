@@ -37,13 +37,16 @@
   "ripgrep": { "branch": "master", "commit": "e2362d4d5185d02fa857bf381e7bd52e66fafc73" },
   "rocket": { "branch": "master", "commit": "f4d9798308879150eca3c24b5319e8ccc88c8998" },
   "rose-pine": { "branch": "main", "commit": "20c7940da844aa4f162a64e552ae3c7e9fdc3b93" },
-  "snacks.nvim": { "branch": "main", "commit": "2b52d89508a448a1ca0c500afbd325e77023afc1" },
+  "snacks.nvim": { "branch": "main", "commit": "aaed4a94111ddfd9d23cdecb01e4ae53030c2c3e" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "626998e5c1b71c130d8bc6cf7abb6709b98287bb" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "2a5ceff981501cff8f46871d5402cd3378a8ab6a" },
   "telescope.nvim": { "branch": "master", "commit": "78857db9e8d819d3cc1a9a7bdc1d39d127a36495" },
   "tokyonight.nvim": { "branch": "main", "commit": "c8ea87cd34b0267c44a67e90ff8f6e7d6af46ff9" },
   "trouble.nvim": { "branch": "main", "commit": "85bedb7eb7fa331a2ccbecb9202d8abba64d37b3" },
   "typescript-tools.nvim": { "branch": "master", "commit": "35e397ce467bedbbbb5bfcd0aa79727b59a08d4a" },
+  "vim-dadbod": { "branch": "master", "commit": "9f0ca8bcef704659820a95c3bbd2c262583a66a1" },
+  "vim-dadbod-completion": { "branch": "master", "commit": "464da308a988b5c8b136777a50182332b04f8d9f" },
+  "vim-dadbod-ui": { "branch": "master", "commit": "f4d37b7312ae6489e5c04bee654ca521baac188a" },
   "vim-rooter": { "branch": "master", "commit": "51402fb77c4d6ae94994e37dc7ca13bec8f4afcc" },
   "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" }
 }

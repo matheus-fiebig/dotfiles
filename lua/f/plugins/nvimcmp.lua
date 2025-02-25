@@ -88,6 +88,7 @@ return {
                 { name = "buffer" },
                 { name = "path" },
                 { name = "luasnip" },
+                { name = "vim-dadbod-completion" },
             },
             window = {
                 completion = {
