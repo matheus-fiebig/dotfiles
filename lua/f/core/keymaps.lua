@@ -14,8 +14,6 @@ keymap.set({ "n", "v" }, "<C-h>", "b", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "{", "{", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "#", "}", { desc = "Jump word" })
 keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
-keymap.set({ "n", "v" }, "s", "f", { desc = "Find foward" })
-keymap.set({ "n", "v" }, "S", "F", { desc = "Find backwards" })
 
 -- telescope
 keymap.set("n", "<leader>H", ":Telescope commands<CR>")
@@ -36,9 +34,6 @@ keymap.set("n", "<leader>n", "<cmd>tabnew %<CR>", { desc = "Open current buffer 
 keymap.set("n", "<C-d>", "<C-W>>", { desc = "Increase window size" })
 keymap.set("n", "<C-a>", "<C-W><", { desc = "Decrease window Size" })
 keymap.set("n", "<C-s>", "<C-W>=", { desc = "Equalize window Size" })
-
--- copy and paste
-keymap.set({ "n", "v" }, "f", "y", { desc = "Copy the current text" })
 
 --code actions
 keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" })
@@ -65,6 +60,10 @@ keymap.set("n", "<leader>ee",
 --ufo
 vim.cmd [[nnoremap <C-f> <nop>]]
 keymap.set('n', '<C-f><C-f>', "<cmd>foldopen<CR>")
+keymap.set('n', '<C-f>', "<cmd>foldclose<CR>")
+
+--ufo
+vim.cmd [[nnoremap <C-f> <nop>]]
 keymap.set('n', '<C-f>', "<cmd>foldclose<CR>")
 
 vim.cmd [[nnoremap <c-z> <nop>]]
