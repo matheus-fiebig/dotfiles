@@ -14,24 +14,18 @@ return {
     },
     {
         'bgwdotdev/gleam-theme-nvim',
-    },
-    {
-        'ribru17/bamboo.nvim',
+        config = function()
+            vim.cmd("colorscheme gleam")
+        end
     },
     {
         "rose-pine/neovim",
         name = "rose-pine",
     },
     {
-        "AlanWarren/rocket",
-    },
-    {
         "folke/tokyonight.nvim",
     },
     {
         "gbprod/nord.nvim",
-        config = function()
-            vim.cmd("colorscheme nord")
-        end
     }
 }

@@ -41,7 +41,7 @@ local function build_dotnet(execute_previous)
     Snacks.notifier('Finished with code ' .. f, "info", notify_opt)
 end
 
-local function run_api_dotnet(execute_previous)
+local function run_dotnet_api(execute_previous)
     local csproj_path = vim.g['dotnet_last_proj_path']
     local _, filename = csproj_path:match("(.+)[/\\]([^/\\]+)%.csproj$")
     local target_framework = get_dotnet_version(csproj_path)
@@ -71,9 +71,9 @@ function Build_and_run_dotnet()
         mode = mode:match("^%s*(.-)%s*$")
     end
 
-    local execute_previous = mode == 'y'
+    local execute_previous = mode == nil or mode == '' or mode == 'y'
     build_dotnet(execute_previous)
-    return run_api_dotnet(execute_previous);
+    return run_dotnet_api(execute_previous);
 end
 
 -----------------------
@@ -81,9 +81,3 @@ end
 --     GENERAL       --
 --                   --
 -----------------------
-function Show_variable_values()
-    if require("dap").status() ~= nil then
-        local word_under_cursor = vim.fn.expand("<cword>")
-        require("dapui").eval(word_under_cursor)
-    end
-end

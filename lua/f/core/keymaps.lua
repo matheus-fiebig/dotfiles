@@ -62,8 +62,8 @@ vim.cmd [[nnoremap <C-f> <nop>]]
 keymap.set('n', '<C-f><C-f>', "<cmd>foldopen<CR>")
 keymap.set('n', '<C-f>', "<cmd>foldclose<CR>")
 
---ufo
-vim.cmd [[nnoremap <C-f> <nop>]]
-keymap.set('n', '<C-f>', "<cmd>foldclose<CR>")
+--octo
+vim.cmd [[nnoremap <C-o> <nop>]]
+keymap.set('n', '<C-o>', "<cmd>Octo actions<CR>")
 
 vim.cmd [[nnoremap <c-z> <nop>]]
