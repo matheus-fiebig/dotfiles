@@ -1,0 +1,13 @@
+# Get ditto
+GET https://pokeapi.co/api/v2/pokemon/ditto
+ 
+
+{
+  "data": {
+    "paymentMethods": "PIX",
+    "showSellerFees": true,
+    "totalOrderValue": 1
+  }
+}
+
+
