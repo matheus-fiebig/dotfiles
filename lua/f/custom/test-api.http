@@ -1,55 +1,241 @@
-# REGISTRAR FAZENDAS
-POST http://localhost:8080/api/fazendas
- 
+###
+# Returns the details of a single bulk action.
+GET {{url}}
+Accept application/json
 
-{
-  "areaTotal": 110.5,
-  "localizacao": "Caçapa",
-  "nome": "Fazenda Teste"
-}
+""
 
 
-# REGISTRAR ESPECIES
-POST http://localhost:8080/api/especies
- 
+###
+# Removes the specified action from the list of bulk actions.
+DELETE {{url}}
+Accept text/plain
 
-{
-  "descricao": "Planta leguminosa",
-  "nome": "Soja"
-}
+""
 
 
-# REGISTRAR PLANTACAO
-POST http://localhost:8080/api/plantacoes
- 
+###
+# Returns the results of a bulk action as a CSV.
+GET {{url}}
+Accept text/csv
 
-{
-  "areaPlantada": 50,
-  "especieId": 1,
-  "fazendaId": 1,
-  "indiceUV": 7.8,
-  "phSolo": 12.3,
-  "status": "EM_CRESCIMENTO",
-  "temperaturaAmbiente": 28.5,
-  "temperaturaSolo": 30,
-  "tipoSolo": "Argiloso",
-  "umidadeAmbiente": 5,
-  "umidadeSolo": 10
-}
+""
 
 
-# REGISTRAR ATUALIZACAO
-POST http://localhost:8080/api/atualizacoes
- 
+###
+# Gets a list of all the bulk actions.
+GET {{url}}
+Accept application/json
 
-{
-  "indiceUV": 7.8,
-  "phSolo": 12.3,
-  "plantacaoId": 1,
-  "temperaturaAmbiente": 28.5,
-  "temperaturaSolo": 30,
-  "umidadeAmbiente": 5,
-  "umidadeSolo": 10
-}
+""
+
+
+###
+# Gets information about a specific jurisdiction.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Gets a list of supported jurisdictions.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Returns the notary specified by the user ID.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Returns a list of available notaries.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Gets the set of pools associated with the current account.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Creates a new pool of remote notaries.
+POST {{url}}
+Content-Type application/json
+Accept application/json
+
+"{
+  "name": "<string>",
+  "organizationId": "<uuid>"
+}"
+
+
+###
+# Gets a list of all the notary pool invites given a pool's ID.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Creates an invite for a remote notary to join a pool.
+POST {{url}}
+Content-Type application/json
+Accept application/json
+
+"{
+  "email": "<string>",
+  "name": "<string>"
+}"
+
+
+###
+# Resends a pool invite.
+POST {{url}}
+Accept application/json
+
+""
+
+
+###
+# Deletes a pending pool invite.
+DELETE {{url}}
+Accept text/plain
+
+""
+
+
+###
+# Invites multiple remote notaries to join a pool.
+POST {{url}}
+Content-Type application/x-www-form-urlencoded
+Accept application/json
+
+""
+
+
+###
+# Gets a pool user by pool ID and user ID.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Deletes a remote notary from a pool.
+DELETE {{url}}
+Accept text/plain
+
+""
+
+
+###
+# Gets a list of remote notaries in a pool
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Gets a list of notary pools that a notary belongs to.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Get information about a notary's commission.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Gets the notary seal image.
+GET {{url}}
+Accept text/plain
+
+""
+
+
+###
+# Gets a list of a remote notary's commissions.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Retrieves a list of the supported identification documents.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Retrieves a list of the supported notarization types.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Retrieves a list of the supported seal types.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Retrieves a list of the supported states.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Gets a list of journal sessions for a given user.
+GET {{url}}
+Accept application/json
+
+""
+
+
+###
+# Gets a notary's complete journal as a PDF file.
+GET {{url}}
+Accept application/pdf
+
+""
+
+
+###
+# Retrieves a PDF of a specified journal entry.
+GET {{url}}
+Accept application/pdf
+
+""
 
 
