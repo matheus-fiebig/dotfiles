@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "1bb4dfd6-a3c2-425b-baed-6a43d1f1dcf4",
+		"name": "API-6S",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23380324"
+	},
+	"item": [
+		{
+			"name": "REGISTRAR FAZENDAS",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Fazenda Teste\",\r\n    \"localizacao\": \"Caçapa\",\r\n    \"areaTotal\": 110.5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/fazendas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"fazendas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTRAR ESPECIES",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Soja\",\r\n    \"descricao\": \"Planta leguminosa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/especies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"especies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTRAR PLANTACAO",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fazendaId\": 1,\r\n    \"especieId\": 1,\r\n    \"areaPlantada\": 50,\r\n    \"tipoSolo\": \"Argiloso\",\r\n    \"status\": \"EM_CRESCIMENTO\",\r\n    \"temperaturaAmbiente\": 28.5,\r\n    \"temperaturaSolo\": 30,\r\n    \"umidadeAmbiente\": 5,\r\n    \"umidadeSolo\": 10,\r\n    \"phSolo\": 12.3,\r\n    \"indiceUV\": 7.8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/plantacoes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"plantacoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTRAR ATUALIZACAO",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"plantacaoId\": 1,\r\n    \"temperaturaAmbiente\": 28.5,\r\n    \"temperaturaSolo\": 30,\r\n    \"umidadeAmbiente\": 5,\r\n    \"umidadeSolo\": 10,\r\n    \"phSolo\": 12.3,\r\n    \"indiceUV\": 7.8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/atualizacoes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"atualizacoes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

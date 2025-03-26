@@ -6,7 +6,7 @@ vim.cmd [[nnoremap <c-d> <nop>]]
 vim.cmd [[nnoremap # <nop>]]
 
 keymap.set({ "n", "v" }, "<C-t>", function()
-    To_http(vim.fn.getcwd() .. "/lua/f/custom/", 'test')
+    To_http(vim.fn.getcwd() .. "/lua/f/custom/", 'test-api')
 end, { desc = "Clear search highlights" })
 
 -- general

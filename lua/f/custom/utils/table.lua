@@ -16,6 +16,16 @@ M.concat_arrays = function(a1, a2)
     return a1
 end
 
+M.contains = vim.tbl_contains
+
+M.filter = vim.tbl_filter
+
+M.count = vim.tbl_count
+
+M.is_empty = vim.tbl_isempty
+
+M.map = vim.tbl_map
+
 M.concat_to_string = function(tbl, mapper, predicate, separator)
     local result = {}
 

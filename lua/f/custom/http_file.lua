@@ -1,8 +1,6 @@
-local table_utils = require("utils.table")
-local parser = require("utils.parser")
-local json_formatter = require("utils.json_formatter")
-
-local variables = {}
+local table_utils = require("f.custom.utils.table")
+local parser = require("f.custom.utils.parser")
+local json_formatter = require("f.custom.utils.json_formatter")
 
 ---map an item to http header
 ---@param item table
@@ -35,12 +33,21 @@ local function create_http_template_parsed(tbl, key, value)
                 name = tbl.name
             end
 
+            local headers = value.header
+            if not table_utils.filter(function(h) return h.key == "Accept" end, headers) then
+                table.insert(headers, { key = "Accept", value = "*/*" })
+            end
+
+            if not table_utils.filter(function(h) return h.key == "Content-Type" end, headers) then
+                table.insert(headers, { key = "Content-Type", value = "application/json" })
+            end
+
             local data_to_parse = {
-                name = name,                                                                               --optional
-                method = value.method,                                                                     --required
-                url = value.url.raw,                                                                       --required
-                headers = table_utils.concat_to_string(value.header, map_to_string, can_use_header, "\n"), --optional
-                body = json_formatter:pretty_print(body)                                                   --optional
+                name = name,                                                                          --optional
+                method = value.method,                                                                --required
+                url = value.url.raw,                                                                  --required
+                headers = table_utils.concat_to_string(headers, map_to_string, can_use_header, "\n"), --optional
+                body = json_formatter:pretty_print(body)                                              --optional
             }
 
             local template = "# {{name}}\n{{method}} {{url}}\n {{headers}}\n\n{{body}}\n\n\n"

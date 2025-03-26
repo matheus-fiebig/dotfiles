@@ -1,0 +1,55 @@
+# REGISTRAR FAZENDAS
+POST http://localhost:8080/api/fazendas
+ 
+
+{
+  "areaTotal": 110.5,
+  "localizacao": "Caçapa",
+  "nome": "Fazenda Teste"
+}
+
+
+# REGISTRAR ESPECIES
+POST http://localhost:8080/api/especies
+ 
+
+{
+  "descricao": "Planta leguminosa",
+  "nome": "Soja"
+}
+
+
+# REGISTRAR PLANTACAO
+POST http://localhost:8080/api/plantacoes
+ 
+
+{
+  "areaPlantada": 50,
+  "especieId": 1,
+  "fazendaId": 1,
+  "indiceUV": 7.8,
+  "phSolo": 12.3,
+  "status": "EM_CRESCIMENTO",
+  "temperaturaAmbiente": 28.5,
+  "temperaturaSolo": 30,
+  "tipoSolo": "Argiloso",
+  "umidadeAmbiente": 5,
+  "umidadeSolo": 10
+}
+
+
+# REGISTRAR ATUALIZACAO
+POST http://localhost:8080/api/atualizacoes
+ 
+
+{
+  "indiceUV": 7.8,
+  "phSolo": 12.3,
+  "plantacaoId": 1,
+  "temperaturaAmbiente": 28.5,
+  "temperaturaSolo": 30,
+  "umidadeAmbiente": 5,
+  "umidadeSolo": 10
+}
+
+

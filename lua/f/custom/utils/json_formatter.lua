@@ -1,4 +1,4 @@
-local tbl = require("utils.table")
+local tbl = require("f.custom.utils.table")
 
 local M = {}
 
