@@ -59,8 +59,7 @@ keymap.set("n", "<leader>ee",
 
 --ufo
 vim.cmd [[nnoremap <C-f> <nop>]]
-keymap.set('n', '<C-f><C-f>', "<cmd>foldopen<CR>")
-keymap.set('n', '<C-f>', "<cmd>foldclose<CR>")
+keymap.set('n', '<C-f>', "za")
 
 --octo
 vim.cmd [[nnoremap <C-o> <nop>]]
