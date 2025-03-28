@@ -130,7 +130,7 @@ returns the string:
 }
 --]]
 --- Utility function that turns a Lua table into a nicely formatted JSON string (pretty-printing).
----@param data table the table to pretty-print
+---@param data table | nil the table to pretty-print
 ---@param keys_orders? table a table where the value for each key (the indentation level) is an array of keys that determines their order in the output
 ---@param escape_special_chars? boolean
 ---@return string the pretty-printed string

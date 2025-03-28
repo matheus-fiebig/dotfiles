@@ -16,50 +16,112 @@ local function can_use_header(item)
     return not item.disabled and item.key and item.value
 end
 
----@param tbl table
----@param host_env table
----@param key string
----@param value table
----@return string
----THERE ARE OTHERS ENVS THAT ARE NOT COMPACTED IN HOST_ENV
----SO I NEED TO GET ALL THE ONES BEFORE THE CURRENT REQUEST PARSED INTO IT
-local function create_http_template_parsed(tbl, host_env, key, value)
-    --local env_vars = tbl['variables']
-
-    local body = ""
-    if next(value.body) ~= nil then
-        local raw_value = value.body.raw
-        if raw_value then
-            body = raw_value
-        else
-            Snacks.notifier(vim.json.encode(value.body), "trace")
-        end
+---check if its allowed to concatenate the header
+---@param headers table
+---@return table
+local function add_default_headers(headers)
+    if table_utils.is_empty(table_utils.filter(function(h) return tostring(h.key):lower() == "accept" end, headers)) then
+        table.insert(headers, { key = "Accept", value = "*/*" })
     end
 
+    if table_utils.is_empty(table_utils.filter(function(h) return tostring(h.key):lower() == "content-type" end, headers)) then
+        table.insert(headers, { key = "Content-Type", value = "application/json" })
+    end
+
+    return headers
+end
+
+---check if its allowed to concatenate the header
+---@param request table
+---@return table | nil
+local function get_http_body(request)
+    if request.body == nil or not table_utils.is_empty(request.body) then
+        return {}
+    end
+
+    local raw_value = request.body.raw
+    if raw_value then
+        return raw_value
+    end
+
+    return nil
+end
+
+---get folder or request name
+---@param tbl table
+---@return string
+local function get_item_name(tbl)
     local name = "Request " .. tostring(tbl)
     if tbl.name then
         name = tbl.name
     end
+    return name
+end
 
-    local headers = value.header
-    if not table_utils.filter(function(h) return h.key == "Accept" end, headers) then
-        table.insert(headers, { key = "Accept", value = "*/*" })
+---parse vars from a specific table
+---@param item table | string
+---@param vars table<{key: string, value: string}>
+---@return table | string
+local function parse_vars(item, vars)
+    if type(item) == "string" then
+        local found_var = table_utils.filter(function(var)
+            local key = var.key ---@cast key string
+            return key:find(item, 0) >= 0
+        end, vars)
+
+        if found_var then
+            local result = item:gsub(found_var.key, found_var.value);
+            return result
+        end
+
+        return item
     end
 
-    if not table_utils.filter(function(h) return h.key == "Content-Type" end, headers) then
-        table.insert(headers, { key = "Content-Type", value = "application/json" })
+    local result = {}
+    for key, value in pairs(vars) do
+        for item_key, item_value in pairs(item) do
+
+        end
     end
+
+    return result
+end
+
+---@param tbl table
+---@param host_env table
+---@param value table
+---@return string
+local function create_http_template_parsed(tbl, host_env, value)
+    local name = get_item_name(tbl)
+    local url = value.url.raw
+    local headers = add_default_headers(value.header)
+    local body = get_http_body(value.body)
 
     local data_to_parse = {
-        name = name,                                                                          --optional
-        method = value.method,                                                                --required
-        url = value.url.raw,                                                                  --required
-        headers = table_utils.concat_to_string(headers, map_to_string, can_use_header, "\n"), --optional
-        body = json_formatter:pretty_print(body)                                              --optional
+        name = name,                                                                                                --optional
+        method = value.method,                                                                                      --required
+        url = parse_vars(url, host_env),                                                                            --required
+        headers = table_utils.concat_to_string(parse_vars(headers, host_env), map_to_string, can_use_header, "\n"), --optional
+        body = json_formatter:pretty_print(parse_vars(body, host_env))                                              --optional
     }
 
     local template = "###\n# {{name}}\n{{method}} {{url}}\n{{headers}}\n\n{{body}}\n\n\n"
     return parser.parse_template(template, data_to_parse)
+end
+
+--- get the tbl['variable'] in the current table
+---@param tbl table
+---@return table[]
+local function find_variables(tbl)
+    local envs = tbl['variable'];
+
+    if envs ~= nil and next(envs) ~= nil then
+        envs = table_utils.filter(function(item)
+            return item['disabled'] == nil or not item['disabled']
+        end, envs)
+    end
+
+    return envs
 end
 
 ---iterate through the itens recursively and returns all itens to be parsed into file
@@ -67,19 +129,32 @@ end
 ---@param acc_tbl table
 ---@return table<string>
 local function iterate_through_item(tbl, acc_tbl)
-    --tbl must allways be sorted so i can get the env first and then pass it to create_http_template_parsed
-    for key, value in pairs(tbl) do
-        if key == "item" then
-            for idx, _ in ipairs(value) do
-                iterate_through_item(value[idx], acc_tbl)
-            end
-        end
+    local envs = find_variables(tbl)
 
-        if key == "request" and value.url and value.method then
-            local result = create_http_template_parsed(tbl, env, key, value)
-            table.insert(acc_tbl, result)
+    local item = tbl["item"];
+    if item ~= nil then
+        for idx, _ in ipairs(item) do
+            iterate_through_item(item[idx], acc_tbl)
         end
     end
+
+    local req = tbl["request"]
+    if req ~= nil and req.url and req.method then
+        local all_envs = {}
+        local req_envs = find_variables(req.url)
+
+        if req_envs ~= nil and envs ~= nil then
+            all_envs = table_utils.concat_arrays(envs, req_envs)
+        elseif req_envs == nil then
+            all_envs = envs
+        elseif envs == nil then
+            all_envs = req_envs
+        end
+
+        local result = create_http_template_parsed(tbl, all_envs, req)
+        table.insert(acc_tbl, result)
+    end
+
 
     return acc_tbl
 end
