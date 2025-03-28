@@ -29,39 +29,6 @@ return {
         "gbprod/nord.nvim",
     },
     {
-        "gelguy/wilder.nvim",
-        config = function()
-            local wilder = require("wilder")
-            wilder.setup({ modes = { ":", "/", "?" } })
-            wilder.set_option('use_python_remote_plugin', 0)
-
-            wilder.set_option("pipeline", {
-                wilder.branch(
-                    wilder.cmdline_pipeline({
-                        fuzzy = 1,
-                    }),
-                    wilder.vim_search_pipeline({
-                        fuzzy = 1,
-                    })
-                ),
-            })
-
-            wilder.set_option(
-                "renderer",
-                wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
-                    highlighter = wilder.basic_highlighter(),
-                    pumblend = 5,
-                    min_width = "100%",
-                    min_height = "25%",
-                    max_height = "35%",
-                    border = "rounded",
-                    left = { " ", wilder.popupmenu_devicons() },
-                    right = { " ", wilder.popupmenu_scrollbar() },
-                }))
-            )
-        end
-    },
-    {
         'folke/snacks.nvim',
         priority = 1000,
         lazy = false,
@@ -70,5 +37,53 @@ return {
                 style = "compact"
             }
         }
+    },
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        config = function()
+            local nvimtree = require("nvim-tree")
+
+            -- recommended settings from nvim-tree documentation
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+
+            nvimtree.setup({
+                view = {
+                    width = 45,
+                    relativenumber = true,
+                },
+                -- change folder arrow icons
+                renderer = {
+                    indent_markers = {
+                        enable = true,
+                    },
+                    icons = {
+                        glyphs = {
+                            folder = {
+                                arrow_closed = "", -- arrow when folder is closed
+                                arrow_open = "", -- arrow when folder is open
+                            },
+                        },
+                    },
+                },
+                -- disable window_picker for
+                -- explorer to work well with
+                -- window splits
+                actions = {
+                    open_file = {
+                        window_picker = {
+                            enable = false,
+                        },
+                    },
+                },
+                filters = {
+                    custom = { ".DS_Store" },
+                },
+                git = {
+                    ignore = false,
+                },
+            })
+        end
     }
 }
