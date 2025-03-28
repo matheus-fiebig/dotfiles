@@ -50,12 +50,10 @@ keymap.set("n", "9", ":DapStepInto<CR>")
 keymap.set("n", "<leader>9", ":DapToggleBreakpoint<CR>")
 --keymap.set('n', '<leader>g', ":lua require'dap'.goto()<CR>", { noremap = true, silent = true }) C# does not support
 keymap.set("n", "K", vim.lsp.buf.hover)
-keymap.set("n", "T", function() Show_variable_values() end)
+
 
 -- tree view
-keymap.set("n", "<leader>ee",
-    "<cmd>NvimTreeOpen<CR><cmd>NvimTreeClose<CR><cmd>lua Snacks.explorer.open({replace_netrw = true})<CR>",
-    { desc = "Toggle file explorer" })
+keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 
 --ufo
 vim.cmd [[nnoremap <C-f> <nop>]]
@@ -64,5 +62,8 @@ keymap.set('n', '<C-f>', "za")
 --octo
 vim.cmd [[nnoremap <C-o> <nop>]]
 keymap.set('n', '<C-o>', "<cmd>Octo actions<CR>")
+
+--easy motion
+vim.cmd [[nmap f <Plug>(easymotion-bd-f)]]
 
 vim.cmd [[nnoremap <c-z> <nop>]]
