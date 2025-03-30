@@ -39,7 +39,7 @@ keymap.set("n", "<C-s>", "<C-W>=", { desc = "Equalize window Size" })
 
 --code actions
 keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" })
-keymap.set('n', '<leade>f', function() vim.lsp.buf.format { async = true } end, { desc = "Format" })
+keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, { desc = "Format" })
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
