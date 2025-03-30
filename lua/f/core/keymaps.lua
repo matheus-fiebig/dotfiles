@@ -30,7 +30,7 @@ keymap.set({ "n", "v" }, "<leader>ft", "<cmd>terminal<CR>", { desc = "Toggle ter
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>l", "<cmd>BufferNext<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
-keymap.set("n", "<leader>c", "<cmd>BufferClose<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
+keymap.set("n", "<leader>c", "<cmd>BufferClose!<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
 keymap.set("n", "<leader>h", "<cmd>BufferPrevious<CR>", { noremap = true, silent = true, desc = "Go to previous tab" })
 keymap.set("n", "<leader>n", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 keymap.set("n", "<C-d>", "<C-W>>", { desc = "Increase window size" })
@@ -69,4 +69,3 @@ keymap.set('n', '<C-o>', "<cmd>Octo actions<CR>")
 vim.cmd [[nmap f <Plug>(easymotion-bd-f)]]
 
 vim.cmd [[nnoremap <c-z> <nop>]]
-vim.cmd [[nmap <leader>x <Plug>vem_delete_buffer-]]

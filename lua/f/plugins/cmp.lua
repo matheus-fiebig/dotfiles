@@ -3,14 +3,46 @@ return {
         'saghen/blink.cmp',
         dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip', 'giuxtaposition/blink-cmp-copilot' },
         opts = {
-            -- C-space: Open menu or open docs if already open
-            -- C-n/C-p or Up/Down: Select next/previous item
-            -- C-e: Hide menu
-            keymap = { preset = 'super-tab' },
+            keymap = { preset = 'enter' },
             appearance = {
-                nerd_font_variant = 'mono'
+                nerd_font_variant = 'mono',
+                kind_icons = {
+                    Text = '  ',
+                    Method = '  ',
+                    Function = '  ',
+                    Constructor = '  ',
+                    Field = '  ',
+                    Variable = '  ',
+                    Class = '  ',
+                    Interface = '  ',
+                    Module = '  ',
+                    Property = '  ',
+                    Unit = '  ',
+                    Value = '  ',
+                    Enum = '  ',
+                    Keyword = '  ',
+                    Snippet = '  ',
+                    Color = '  ',
+                    File = '  ',
+                    Reference = '  ',
+                    Folder = '  ',
+                    EnumMember = '  ',
+                    Constant = '  ',
+                    Struct = '  ',
+                    Event = '  ',
+                    Operator = '  ',
+                    TypeParameter = '  '
+                },
             },
-            completion = { documentation = { auto_show = true } },
+            completion = {
+                documentation = { auto_show = true },
+                menu = {
+                    draw = {
+                        components = {
+                        },
+                    }
+                },
+            },
             sources = {
                 default = { 'lsp', 'buffer', 'path', 'snippets', "copilot" },
                 per_filetype = { sql = { 'dadbod' } },
@@ -22,9 +54,35 @@ return {
                         score_offset = 100,
                         async = true,
                     },
+                    lsp = {
+                        min_keyword_length = 0,
+                        score_offset = 0,
+                    },
+                    path = {
+                        min_keyword_length = 1,
+                        score_offset = 2,
+                    },
+                    buffer = {
+                        min_keyword_length = 1,
+                        score_offset = 3,
+                    },
+                    snippets = {
+                        min_keyword_length = 1,
+                        score_offset = 4,
+                    }
                 }
             },
-            fuzzy = { implementation = "lua" }
+            signature = { enabled = true },
+            keymap = {
+                ["<C-space>"] = { "show", 'show_documentation', 'hide_documentation' },
+                ["<C-c>"] = { "hide" },
+                ["<CR>"] = { "select_and_accept", "fallback" },
+                ["<Tab>"] = { "select_next", "fallback" },
+                ["<S-Tab>"] = { "select_prev", "fallback" },
+                ["<Down>"] = { "select_next", "fallback" },
+                ["<Up>"] = { "select_prev", "fallback" },
+            },
+            fuzzy = { implementation = "lua" },
         },
         opts_extend = { "sources.default" },
     },
