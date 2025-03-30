@@ -16,10 +16,13 @@ return {
       },
       ensure_installed = {
         "json",
+        "angular",
         "javascript",
         "typescript",
         "tsx",
         "html",
+        "c_sharp",
+        "sql",
         "css",
         "go",
         "markdown",
