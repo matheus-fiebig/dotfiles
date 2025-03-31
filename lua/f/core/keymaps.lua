@@ -57,6 +57,8 @@ keymap.set("n", "K", vim.lsp.buf.hover)
 -- tree view
 keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 
+keymap.set("n", "<leader>a", "<cmd>AerialToggle left<CR>", { desc = "Toggle file explorer" })
+
 --ufo
 vim.cmd [[nnoremap <C-f> <nop>]]
 keymap.set('n', '<C-f>', "za")
