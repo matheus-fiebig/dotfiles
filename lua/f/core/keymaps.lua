@@ -6,10 +6,6 @@ vim.cmd [[nnoremap <c-d> <nop>]]
 vim.cmd [[nnoremap # <nop>]]
 vim.cmd [[nnoremap <leader>c <nop>]]
 
-keymap.set({ "n", "v" }, "<C-t>", function()
-    To_http(vim.fn.getcwd() .. "/lua/f/custom/", 'test-api')
-end, { desc = "Clear search highlights" })
-
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
 keymap.set({ "n", "v" }, "<C-Right>", "e", { desc = "Jump word" })

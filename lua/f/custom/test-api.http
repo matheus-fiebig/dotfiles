@@ -1,10 +1,10 @@
 ###
 # Returns the details of a single bulk action.
-GET {{url}}
+GET test.com.br
 Accept application/json
 Content-Type application/json
 
-null
+{}
 
 
 ###
@@ -13,6 +13,6 @@ DELETE {{url}}
 Accept text/plain
 Content-Type application/json
 
-null
+{}
 
 

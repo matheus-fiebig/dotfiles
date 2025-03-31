@@ -14,39 +14,7 @@
                             "type": "text/plain"
                         },
                         "url": {
-                            "path": [
-                                "v1.0",
-                                "organizations",
-                                ":organizationId",
-                                "bulk_action",
-                                ":bulkActionId"
-                            ],
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "query": [],
-                            "variable": [
-                                {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "organizationId",
-                                    "disabled": false,
-                                    "description": {
-                                        "content": "(Required) The organization's GUID.",
-                                        "type": "text/plain"
-                                    }
-                                },
-                                {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "bulkActionId",
-                                    "disabled": false,
-                                    "description": {
-                                        "content": "(Required) The ID of the bulk action.",
-                                        "type": "text/plain"
-                                    }
-                                }
-                            ]
+                            "raw": "test.com.br"
                         },
                         "header": [
                             {
