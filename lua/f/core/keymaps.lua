@@ -62,8 +62,8 @@ vim.cmd [[nnoremap <C-f> <nop>]]
 keymap.set('n', '<C-f>', "za")
 
 --octo
-vim.cmd [[nnoremap <C-o> <nop>]]
-keymap.set('n', '<C-o>', "<cmd>Octo actions<CR>")
+vim.cmd [[nnoremap <C-g> <nop>]]
+keymap.set('n', '<C-g>', "<cmd>Octo actions<CR>")
 
 --easy motion
 vim.cmd [[nmap f <Plug>(easymotion-bd-f)]]
