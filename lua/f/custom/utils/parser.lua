@@ -2,6 +2,21 @@ local table_utils = require("f.custom.utils.table")
 
 local M = {}
 
+local function escape(str)
+    return (str:gsub('%%', '%%%%')
+        :gsub('^%^', '%%^')
+        :gsub('%$$', '%%$')
+        :gsub('%(', '%%(')
+        :gsub('%)', '%%)')
+        :gsub('%.', '%%.')
+        :gsub('%[', '%%[')
+        :gsub('%]', '%%]')
+        :gsub('%*', '%%*')
+        :gsub('%+', '%%+')
+        :gsub('%-', '%%-')
+        :gsub('%?', '%%?'))
+end
+
 --return the string version of the given template,
 --each obj field should be wrapped like {{field}}
 ---@param template string
@@ -11,7 +26,7 @@ M.parse_template = function(template, obj)
     local copy_template = template
     for key, value in pairs(obj) do
         local pattern = "%{%{" .. key .. "%}%}"
-        copy_template = copy_template:gsub(pattern, value)
+        copy_template = copy_template:gsub(pattern, escape(value))
     end
     return copy_template
 end
@@ -51,4 +66,8 @@ return M
 --"type": "text/plain"
 --}
 --}
+--]
+--]
+--]
+--]
 --]

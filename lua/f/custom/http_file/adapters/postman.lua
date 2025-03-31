@@ -101,11 +101,11 @@ end
 ---@param request table
 ---@return table | nil
 local function get_http_body(request)
-    if request.body == nil or not table_utils.is_empty(request.body) then
+    if request == nil or table_utils.is_empty(request) then
         return {}
     end
 
-    local raw_value = request.body.raw
+    local raw_value = request.raw
     if raw_value then
         return raw_value
     end
