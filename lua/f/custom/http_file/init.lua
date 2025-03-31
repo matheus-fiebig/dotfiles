@@ -24,7 +24,7 @@ M.generate_http_file = function(opts)
 
     if opts.type == 'postman' then
         postman.generate(json_file, output_file)
-        vim.notify("Aquivo .http gerado com sucesso", "info")
+        --vim.notify("Aquivo .http gerado com sucesso", "info")
     end
 
     json_file:close();

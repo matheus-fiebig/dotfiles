@@ -26,12 +26,27 @@ M.is_empty = vim.tbl_isempty
 
 M.map = vim.tbl_map
 
-M.concat_to_string = function(tbl, mapper, predicate, separator)
+--- Concatenate the specified table into a single string
+---@generic T
+---@param tbl T[] | nil # The table to concatenate
+---@param separator string # The value separator
+---@param mapper? fun(item: T): string # The optional mapper function
+---@param predicate? fun(item: T): boolean # The optional predicate function
+---@return string # The concatenated string
+M.join = function(tbl, separator, mapper, predicate)
+    if not tbl or #tbl == 0 then
+        return ""
+    end
+
     local result = {}
 
     for _, v in ipairs(tbl) do
-        if predicate(v) then
-            table.insert(result, mapper(v))
+        if not predicate or predicate(v) then
+            if mapper then
+                table.insert(result, mapper(v))
+            else
+                table.insert(result, v)
+            end
         end
     end
 
