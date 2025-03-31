@@ -20,7 +20,7 @@ keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
 keymap.set("n", "<leader>H", function() Snacks.picker.commands() end)
 keymap.set("n", "<leader>ff", function() Snacks.picker.files() end)
 keymap.set("n", "<leader>fc", function() Snacks.picker.grep() end)
-keymap.set("n", "<leader>gf", function() Snacks.picker.git_files() end)
+keymap.set("n", "<leader>gf", function() Snacks.picker.git_diff() end)
 
 -- nvim terminal
 keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal" })
