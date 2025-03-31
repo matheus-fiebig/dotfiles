@@ -4,18 +4,31 @@ local json_formatter = require("f.custom.utils.json_formatter")
 
 local postman = {}
 
----map an item to http header
----@param item table{key:string, value:string}
----@return string
-local function map_to_string(item)
-    return item.key .. " " .. item.value
+--- get the tbl['variable'] in the current table
+---@param tbl table
+---@return table[]
+local function find_variables(tbl)
+    local envs = tbl['variable'];
+
+    if envs ~= nil and next(envs) ~= nil then
+        envs = table_utils.filter(function(item)
+            return item['disabled'] == nil or not item['disabled']
+        end, envs)
+    end
+
+    return envs
 end
 
----check if its allowed to concatenate the header
----@param item table
----@return boolean
-local function can_use_header(item)
-    return not item.disabled and item.key and item.value
+local function get_unified_variables(request_variables, host_variables)
+    local all_envs = {}
+    if request_variables ~= nil and host_variables ~= nil then
+        all_envs = table_utils.concat_arrays(host_variables, request_variables)
+    elseif request_variables == nil then
+        all_envs = host_variables
+    elseif host_variables == nil then
+        all_envs = request_variables
+    end
+    return all_envs
 end
 
 ---get folder or request name
@@ -32,7 +45,7 @@ end
 ---check if its allowed to concatenate the header
 ---@param headers table
 ---@return table
-local function add_default_http_headers(headers)
+local function get_http_headers(headers)
     if table_utils.is_empty(table_utils.filter(function(h) return tostring(h.key):lower() == "accept" end, headers)) then
         table.insert(headers, { key = "Accept", value = "*/*" })
     end
@@ -67,14 +80,16 @@ end
 local function create_http_template_for_item(tbl, host_env, value)
     local name = get_request_or_folder_name(tbl)
     local url = value.url.raw
-    local headers = add_default_http_headers(value.header)
+    local headers = get_http_headers(value.header)
     local body = get_http_body(value.body) ---@cast body table
 
     local data_to_parse = {
         name = name,
         method = value.method,
         url = parser.parse_variables(url, host_env),
-        headers = table_utils.concat_to_string(headers, map_to_string, can_use_header, "\n"),
+        headers = table_utils.concat_to_string(headers,
+            function(item) return item.key .. " " .. item.value end,
+            function(item) return not item.disabled and item.key and item.value end, "\n"),
         body = json_formatter:pretty_print(body)
     }
 
@@ -82,27 +97,12 @@ local function create_http_template_for_item(tbl, host_env, value)
     return parser.parse_template(template, data_to_parse)
 end
 
---- get the tbl['variable'] in the current table
----@param tbl table
----@return table[]
-local function find_variables(tbl)
-    local envs = tbl['variable'];
-
-    if envs ~= nil and next(envs) ~= nil then
-        envs = table_utils.filter(function(item)
-            return item['disabled'] == nil or not item['disabled']
-        end, envs)
-    end
-
-    return envs
-end
-
 ---iterate through the itens recursively and returns all itens to be parsed into file
 ---@param tbl table
 ---@param acc_tbl table
 ---@return table<string>
 local function iterate_through_item(tbl, acc_tbl)
-    local envs = find_variables(tbl)
+    local host_variables = find_variables(tbl)
 
     local item = tbl["item"];
     if item ~= nil then
@@ -113,18 +113,9 @@ local function iterate_through_item(tbl, acc_tbl)
 
     local req = tbl["request"]
     if req ~= nil and req.url and req.method then
-        local all_envs = {}
-        local req_envs = find_variables(req.url)
-
-        if req_envs ~= nil and envs ~= nil then
-            all_envs = table_utils.concat_arrays(envs, req_envs)
-        elseif req_envs == nil then
-            all_envs = envs
-        elseif envs == nil then
-            all_envs = req_envs
-        end
-
-        local result = create_http_template_for_item(tbl, all_envs, req)
+        local request_variables = find_variables(req.url)
+        local variables = get_unified_variables(request_variables, host_variables)
+        local result = create_http_template_for_item(tbl, variables, req)
         table.insert(acc_tbl, result)
     end
 
