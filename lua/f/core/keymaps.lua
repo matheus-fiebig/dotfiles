@@ -42,7 +42,7 @@ keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" })
 keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, { desc = "Format" })
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
-keymap.set('n', '<leader>r', function() Snacks.picker.lsp_references() end, { desc = "Go to definition" })
+keymap.set('n', '<leader>r', "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 
 -- debug
