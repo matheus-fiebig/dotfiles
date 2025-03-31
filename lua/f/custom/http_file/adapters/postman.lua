@@ -14,7 +14,6 @@ local function repl_variables(text, variables)
     end, variables)
 
     if found_variable and #found_variable > 0 then
-        --Remove de {{}} from de text
         local result = text:gsub(found_variable[1].key, found_variable[1].value, 1)
         return result
     end
@@ -32,8 +31,22 @@ local function get_variables(tbl)
         return item['disabled'] == nil or not item['disabled']
     end
 
+    local padronize = function(item)
+        local key = item.key ---@cast key string
+        if not key:match("^{{") then
+            key = "{{" .. key
+        end
+        if not key:match("}}$") then
+            key = key .. "}}"
+        end
+
+        item.key = key
+        return item
+    end
+
     if envs ~= nil and next(envs) ~= nil then
         envs = table_utils.filter(predicate, envs)
+        envs = table_utils.map(padronize, envs)
     end
 
     return envs
@@ -100,6 +113,10 @@ local function get_http_body(request)
     return nil
 end
 
+---generate url string without variables replaced
+---@param url table
+---@param variables table
+---@return string
 local function generate_url_encoded(url)
     if url.raw then
         return url.raw
@@ -114,7 +131,7 @@ local function generate_url_encoded(url)
         function(i) return i and not i.disabled end
     )
 
-    return host .. "/" .. path .. "?" .. query
+    return host .. "/" .. path .. "?" .. query, variables
 end
 
 
@@ -123,22 +140,24 @@ end
 ---@param variables table
 ---@return string
 local function create_http_template_for(request_name, request, variables)
-    local url = repl_variables(generate_url_encoded(request.url), variables)
-    --TODO: pass auth object to headers
-    local headers = get_http_headers(request.header, variables)
-    local body = get_http_body(request.body) ---@cast body table
+    local url = repl_variables(generate_url_encoded(request.url), variables) --ok
+    local headers = repl_variables(
+        table_utils.join(
+            get_http_headers(request.header, variables),
+            "\n",
+            function(item) return item.key .. " " .. item.value end,
+            function(item) return not item.disabled and item.key and item.value end
+        ), variables
+    )
+
+    local body = repl_variables(json_formatter:pretty_print(get_http_body(request.body)), variables)
 
     local data_to_parse = {
         name = request_name,
         method = request.method,
         url = url,
-        headers = table_utils.join(
-            headers,
-            "\n",
-            function(item) return item.key .. " " .. item.value end,
-            function(item) return not item.disabled and item.key and item.value end
-        ),
-        body = json_formatter:pretty_print(body)
+        headers = headers,
+        body = body
     }
 
     local template = "###\n# {{name}}\n{{method}} {{url}}\n{{headers}}\n\n{{body}}\n\n\n"
@@ -150,6 +169,7 @@ end
 ---@param acc_tbl table
 ---@return table<string>
 local function iterate_through_item(tbl, acc_tbl, host_variables)
+    --TODO: pass auth object to headers
     local found_variables = get_variables(tbl)
     if found_variables then
         for _, value in ipairs(found_variables) do
