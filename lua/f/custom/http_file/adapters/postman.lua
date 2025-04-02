@@ -198,16 +198,12 @@ end
 ---iterate through the itens recursively and append to file
 ---@param json_file file*
 ---@param output_file file*
----@return nil
+---@return table
 postman.generate = function(json_file, output_file)
     local file_as_json = vim.json.decode(json_file:read("*a"))
     local template = iterate_through_item(file_as_json, {}, {})
 
-    for _, value in ipairs(template) do
-        if value then
-            output_file:write(value)
-        end
-    end
+    return template
 end
 
 return postman
