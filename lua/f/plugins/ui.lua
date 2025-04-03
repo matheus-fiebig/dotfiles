@@ -66,8 +66,7 @@ return {
         opts = {
             notifier = {
                 style = "compact"
-            },
-            picker = { enabled = true },
+            }
         }
     },
     {

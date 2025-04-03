@@ -3,7 +3,6 @@ return {
         'saghen/blink.cmp',
         dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip', 'giuxtaposition/blink-cmp-copilot' },
         opts = {
-            keymap = { preset = 'enter' },
             appearance = {
                 nerd_font_variant = 'mono',
                 kind_icons = {
