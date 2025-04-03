@@ -1,19 +1,1 @@
-###
-# Returns the details of a single bulk action.
-GET test.com.br
-Accept application/json
-Test https://notary-s.docusign.net/restapi
-Content-Type application/json
-
-{}
-
-
-###
-# Removes the specified action from the list of bulk actions.
-DELETE https://notary-s.docusign.net/restapi/v1.0/organizations/:organizationId/bulk_action/:bulkActionId?
-Accept text/plain
-Content-Type application/json
-
-{}
-
 

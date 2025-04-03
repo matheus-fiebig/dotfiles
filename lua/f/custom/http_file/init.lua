@@ -2,13 +2,9 @@ local api = require('f.custom.http_file.api')
 
 local M = {}
 
+---@param opts httpgen.Config
+---@return httpgen
 M.setup = function(opts)
-    opts = {
-        path = vim.fn.getcwd() .. "/lua/f/custom/",
-        filename = 'test-api',
-        type = 'postman',
-    }
-
     return api:new(opts)
 end
 

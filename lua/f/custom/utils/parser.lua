@@ -1,73 +1,38 @@
 local table_utils = require("f.custom.utils.table")
 
 local M = {}
+local template = "###\n# {{name}}\n{{method}} {{url}}\n{{headers}}\n\n{{body}}\n\n\n"
 
-local function escape(str)
-    return (str:gsub('%%', '%%%%')
-        :gsub('^%^', '%%^')
-        :gsub('%$$', '%%$')
-        :gsub('%(', '%%(')
-        :gsub('%)', '%%)')
-        :gsub('%.', '%%.')
-        :gsub('%[', '%%[')
-        :gsub('%]', '%%]')
-        :gsub('%*', '%%*')
-        :gsub('%+', '%%+')
-        :gsub('%-', '%%-')
-        :gsub('%?', '%%?'))
+---@param text string
+---@param variables httpgen.KeyValue[]
+---@return string
+M.repl_variables = function(text, variables)
+    local found_variable = table_utils.filter(function(item)
+        local matched = text:find(item.key, 1, true)
+        return not not matched and matched > 0
+    end, variables)
+
+    if found_variable and #found_variable > 0 then
+        local result = text:gsub(found_variable[1].key, found_variable[1].value, 1)
+        return result
+    end
+
+    return text
 end
 
---return the string version of the given template,
+--return the string version of the http template,
 --each obj field should be wrapped like {{field}}
----@param template string
----@param obj [T]
+---@generic T any
+---@param obj table<T>
 ---@return string
-M.parse_template = function(template, obj)
+M.parse_template = function(obj, variables)
     local copy_template = template
     for key, value in pairs(obj) do
         local pattern = "%{%{" .. key .. "%}%}"
-        copy_template = copy_template:gsub(pattern, escape(value))
+        local value_with_variable = M.repl_variables(tostring(value), variables)
+        copy_template = copy_template:gsub(pattern, Escape(value_with_variable))
     end
     return copy_template
 end
 
 return M
-
-
---"path": [
---"v1.0",
---"organizations",
---":organizationId",
---"bulk_action",
---":bulkActionId"
---],
---"host": [
---"{{baseUrl}}"
---],
---"query": [],
---"variable": [
---{
---"type": "any",
---"value": "<uuid>",
---"key": "organizationId",
---"disabled": false,
---"description": {
---"content": "(Required) The organization's GUID.",
---"type": "text/plain"
---}
---},
---{
---"type": "any",
---"value": "<uuid>",
---"key": "bulkActionId",
---"disabled": false,
---"description": {
---"content": "(Required) The GUID of the bulk action.",
---"type": "text/plain"
---}
---}
---]
---]
---]
---]
---]
