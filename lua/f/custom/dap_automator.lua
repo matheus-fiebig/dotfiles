@@ -1,9 +1,5 @@
------------------------
---                   --
---  DOTNET COMMANDS  --
---                   --
------------------------
-
+---@params file_path string
+---@return string
 local function get_dotnet_version(file_path)
     local file = io.open(file_path, "r")
     if not file then
@@ -18,6 +14,8 @@ local function get_dotnet_version(file_path)
     return targetFramework
 end
 
+---@params execute_previou boolean
+---@return nil
 local function build_dotnet(execute_previous)
     local default_path = vim.fn.getcwd() .. '/'
 
@@ -41,6 +39,8 @@ local function build_dotnet(execute_previous)
     Snacks.notifier('Finished with code ' .. f, "info", notify_opt)
 end
 
+---@params execute_previou boolean
+---@return string
 local function run_dotnet_api(execute_previous)
     local csproj_path = vim.g['dotnet_last_proj_path']
     local _, filename = csproj_path:match("(.+)[/\\]([^/\\]+)%.csproj$")
@@ -63,6 +63,7 @@ local function run_dotnet_api(execute_previous)
     return vim.g['dotnet_last_dll'];
 end
 
+---@return string
 function Build_and_run_dotnet()
     local mode = 'n'
 
@@ -75,9 +76,3 @@ function Build_and_run_dotnet()
     build_dotnet(execute_previous)
     return run_dotnet_api(execute_previous);
 end
-
------------------------
---                   --
---     GENERAL       --
---                   --
------------------------

@@ -1,0 +1,136 @@
+{
+    "item": [
+        {
+            "name": "BulkAction",
+            "description": "These methods enable you to manage notary bulk actions.",
+            "item": [
+                {
+                    "id": "e3b932ec-e2c6-49d0-b093-72750653db00",
+                    "name": "Returns the details of a single bulk action.",
+                    "request": {
+                        "name": "Returns the details of a single bulk action.",
+                        "description": {
+                            "content": "Given a bulk action ID, this method returns information about the corresponding actions.\n\n[Required authentication scopes](/platform/auth/reference/scopes/): `notary_read`, `signature`, `organization_read`.",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "raw": "test.com.br"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Test",
+                                "value": "{{baseUrl}}"
+                            }
+                        ],
+                        "method": "GET",
+                        "body": {},
+                        "auth": null
+                    },
+                    "event": [],
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    }
+                },
+                {
+                    "id": "cccbb073-3812-48dc-85ff-36f6f9b14783",
+                    "name": "Removes the specified action from the list of bulk actions.",
+                    "request": {
+                        "name": "Removes the specified action from the list of bulk actions.",
+                        "description": {
+                            "content": "Given a bulk action ID, this method removes the corresponding action from the stored list of bulk actions. This does not impact the results of the bulk action itself.\n\n[Required authentication scopes](/platform/auth/reference/scopes/): `notary_write`, `signature`, `organization_read`.",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "v1.0",
+                                "organizations",
+                                ":organizationId",
+                                "bulk_action",
+                                ":bulkActionId"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "type": "any",
+                                    "value": "<uuid>",
+                                    "key": "organizationId",
+                                    "disabled": false,
+                                    "description": {
+                                        "content": "(Required) The organization's GUID.",
+                                        "type": "text/plain"
+                                    }
+                                },
+                                {
+                                    "type": "any",
+                                    "value": "<uuid>",
+                                    "key": "bulkActionId",
+                                    "disabled": false,
+                                    "description": {
+                                        "content": "(Required) The GUID of the bulk action.",
+                                        "type": "text/plain"
+                                    }
+                                }
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "text/plain"
+                            }
+                        ],
+                        "method": "DELETE",
+                        "body": {},
+                        "auth": null
+                    },
+                    "event": [],
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    }
+                }
+            ]
+        } 
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "type": "any",
+                "value": "Authorization",
+                "key": "key"
+            },
+            {
+                "type": "any",
+                "value": "{{apiKey}}",
+                "key": "value"
+            },
+            {
+                "type": "any",
+                "value": "header",
+                "key": "in"
+            }
+        ]
+    },
+    "event": [],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "https://notary-s.docusign.net/restapi"
+        }
+    ],
+    "info": {
+        "_postman_id": "ed20c271-ef69-4cea-99d6-6a0aa5c1aa92",
+        "name": "Notary API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": {
+            "content": "The Notary Service orchestrates notary workflows, managing notary invites and users, notary seals, and notary journal input and export.\r\n\r\nNOTE: All query string parameters must be URL encoded for special characters.\n\nContact Support:\n Name: DocuSign Developer Center\n Email: devcenter@docusign.com",
+            "type": "text/plain"
+        }
+    }
+}
