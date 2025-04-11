@@ -16,11 +16,14 @@ keymap.set({ "n", "v" }, "{", "{", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "#", "}", { desc = "Jump word" })
 keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
 
--- snacks
-keymap.set("n", "<leader>H", function() Snacks.picker.commands() end)
-keymap.set("n", "<leader>ff", function() Snacks.picker.files() end)
-keymap.set("n", "<leader>fc", function() Snacks.picker.grep() end)
-keymap.set("n", "<leader>gf", function() Snacks.picker.git_diff() end)
+-- telescope
+keymap.set("n", "<leader>H", function() require 'telescope.builtin'.commands() end)
+keymap.set("n", "<leader>ff",
+    function() require 'telescope.builtin'.find_files() end)
+keymap.set("n", "<leader>fc",
+    function() require 'telescope.builtin'.live_grep() end)
+keymap.set("n", "<leader>gf",
+    function() require 'telescope.builtin'.git_status() end)
 
 -- nvim terminal
 keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Go to normal mode in terminal" })
@@ -42,7 +45,8 @@ keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" })
 keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, { desc = "Format" })
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
-keymap.set('n', '<leader>r', "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", { desc = "Go to definition" })
+keymap.set('n', '<leader>r', "<cmd>Trouble lsp toggle focus=false wig.position=right<cr>", { desc = "Go to definition" })
+keymap.set('n', '<leader>d', "<cmd>Trouble diagnostics toggle focus=false wig.position=right<cr>", { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 
 -- debug

@@ -13,7 +13,6 @@ return {
             })
 
             local lspconfig = require("lspconfig")
-            local mason_registry = require('mason-registry')
 
             require("mason-lspconfig").setup_handlers {
                 function(server_name)
