@@ -1,10 +1,10 @@
-vim.g.mapleader = " "
-
 local keymap = vim.keymap -- for conciseness
 
 vim.cmd [[nnoremap <c-d> <nop>]]
 vim.cmd [[nnoremap # <nop>]]
 vim.cmd [[nnoremap <leader>c <nop>]]
+vim.cmd [[nnoremap <leader>dn <nop>]]
+vim.cmd [[nnoremap <leader>rf <nop>]]
 
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
@@ -45,8 +45,8 @@ keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" })
 keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, { desc = "Format" })
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
-keymap.set('n', '<leader>r', "<cmd>Trouble lsp toggle focus=false wig.position=right<cr>", { desc = "Go to definition" })
-keymap.set('n', '<leader>d', "<cmd>Trouble diagnostics toggle focus=false wig.position=right<cr>", { desc = "Go to definition" })
+keymap.set('n', '<leader>rf', "<cmd>Trouble lsp toggle focus=false wig.position=right<cr>", { desc = "Go to definition" })
+keymap.set('n', '<leader>dn', "<cmd>Trouble diagnostics toggle focus=false wig.position=right<cr>", { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 
 -- debug
