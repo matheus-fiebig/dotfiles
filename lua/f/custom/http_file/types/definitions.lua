@@ -22,8 +22,8 @@
 ---@alias httpgen.Config.Mode 'single_file' | 'preserve_structure'
 ---@alias httpgen.Config.Type 'postman' | 'swagger.json'
 ---@class httpgen.Config
----@field env_path string
----@field source_path string
+---@field env_path string | nil
+---@field source_path string | nil
 ---@field source_type httpgen.Config.Type
 ---@field mode httpgen.Config.Mode
 

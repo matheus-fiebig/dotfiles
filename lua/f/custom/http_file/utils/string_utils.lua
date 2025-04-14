@@ -1,7 +1,9 @@
+local M = {}
+
 --return the escaped string
 ---@param str string
 ---@return string
-function Escape(str)
+M.escape = function(str)
     return (str:gsub('%%', '%%%%')
         :gsub('^%^', '%%^')
         :gsub('%$$', '%%$')
@@ -15,3 +17,5 @@ function Escape(str)
         :gsub('%-', '%%-')
         :gsub('%?', '%%?'))
 end
+
+return M

@@ -1,4 +1,6 @@
-if vim.version().major == 0 and vim.version().minor <= 10 and vim.version().patch < 4 then
+local disable = true
+
+if disable or (vim.version().major == 0 and vim.version().minor <= 10 and vim.version().patch < 4) then
     return {}
 end
 

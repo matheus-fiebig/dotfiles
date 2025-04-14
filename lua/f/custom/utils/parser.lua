@@ -1,4 +1,5 @@
 local table_utils = require("f.custom.utils.table")
+local string_utils = require("f.custom.http_file.utils.string_utils")
 
 local M = {}
 local template = "###\n# {{name}}\n{{method}} {{url}}\n{{headers}}\n\n{{body}}\n\n\n"
@@ -30,7 +31,7 @@ M.parse_template = function(obj, variables)
     for key, value in pairs(obj) do
         local pattern = "%{%{" .. key .. "%}%}"
         local value_with_variable = M.repl_variables(tostring(value), variables)
-        copy_template = copy_template:gsub(pattern, Escape(value_with_variable))
+        copy_template = copy_template:gsub(pattern, string_utils.escape(value_with_variable))
     end
     return copy_template
 end
