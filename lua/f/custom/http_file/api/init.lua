@@ -9,6 +9,13 @@ local function get_adapter(_)
     return postman
 end
 
+---@param buf integer
+---@param data string
+local function write_into_buffer(buf, data)
+    local line_count = vim.api.nvim_buf_line_count(0)
+    vim.api.nvim_buf_set_lines(buf, line_count, line_count, false, vim.split(data, "\n"))
+end
+
 ---@param opts httpgen.Config
 local function generate_http_file(opts)
     local json_file = io.open(opts.source_path, "r")
@@ -25,18 +32,14 @@ local function generate_http_file(opts)
         local buf = vim.api.nvim_create_buf(true, false)
         vim.api.nvim_buf_set_name(buf, 'collection.http')
         for _, value in ipairs(template) do
-            local line_count = vim.api.nvim_buf_line_count(0)
-            vim.api.nvim_buf_set_lines(buf, line_count, line_count, false, vim.split(value, "\n"))
+            write_into_buffer(buf, value)
         end
     end
 
     if opts.mode == 'multi_buffer' then
         for _, value in ipairs(template) do
             local buf = vim.api.nvim_create_buf(true, false)
-            --vim.api.nvim_buf_set_name(buf, value.name .. '.http')
-
-            local line_count = vim.api.nvim_buf_line_count(0)
-            vim.api.nvim_buf_set_lines(buf, line_count, line_count, false, vim.split(value, "\n"))
+            write_into_buffer(buf, value)
         end
     end
 

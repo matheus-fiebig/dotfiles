@@ -3,10 +3,10 @@ TODO
 - Adicionar suporte para env
 
 Seria dahora
-- Adicionar multiplos arquivos 
 - Adicionar suporte para swagger
 
 OK
+- Adicionar multiplos arquivos 
 - Adicionar comando de execucao 
 - Adicionar unico arquivo 
 
