@@ -1,13 +1,8 @@
-local postman = require('f.custom.http_file.adapters.postman')
+local adapters = {
+    postman = require('f.custom.http_file.adapters.postman')
+}
 
 local api = {}
-
----get the adapter used to create the .http template
----@param type httpgen.Config.Type
----@return httpgen.Adapter
-local function get_adapter(type)
-    return postman
-end
 
 ---@param buf integer
 ---@param data string
@@ -25,7 +20,7 @@ local function generate_http_file(opts)
     end
 
     local json = json_file:read("*a");
-    local adapter = get_adapter(opts.source_type)
+    local adapter = adapters[opts.source_type]
     local template = adapter:execute(vim.json.decode(json))
 
     if opts.mode == 'single_buffer' then
