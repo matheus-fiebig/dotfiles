@@ -187,9 +187,10 @@ local function iterate_through_itens(tbl, acc_tbl, host_variables)
     if req ~= nil and req.url and req.method then
         local request_variables = get_variables(req.url)
         local variables = get_unified_variables(request_variables, host_variables)
-
         ---@cast tbl PostmanItem | PostmanItemGroup
-        local result = create_http_template_for(get_request_or_folder_name(tbl), req, variables)
+        local req_name = get_request_or_folder_name(tbl)
+
+        local result = create_http_template_for(req_name, req, variables)
         table.insert(acc_tbl, result)
     end
 

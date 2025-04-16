@@ -19,8 +19,8 @@
 
 ---@alias Template string[]
 
----@alias httpgen.Config.Mode 'single_file' | 'preserve_structure'
----@alias httpgen.Config.Type 'postman' | 'swagger.json'
+---@alias httpgen.Config.Mode 'single_buffer' | 'multi_buffer'
+---@alias httpgen.Config.Type 'postman'
 ---@class httpgen.Config
 ---@field env_path string | nil
 ---@field source_path string | nil

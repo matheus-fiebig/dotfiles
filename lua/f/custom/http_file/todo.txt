@@ -1,8 +1,13 @@
-Adicionar suporte de Auth
-Adicionar comando de execucao OK
-Adicionar unico arquivo OK
-Adicionar multiplos arquivos 
-Adicionar suporte para env
+TODO
+- Adicionar suporte de Auth
+- Adicionar suporte para env
 
-Adicionar suporte para swagger
+Seria dahora
+- Adicionar multiplos arquivos 
+- Adicionar suporte para swagger
+
+OK
+- Adicionar comando de execucao 
+- Adicionar unico arquivo 
+
 
