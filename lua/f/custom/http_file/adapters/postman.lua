@@ -4,6 +4,46 @@ local json_formatter = require("f.custom.utils.json_formatter")
 
 local postman = {}
 
+---@param item PostmanVariable
+---@return boolean
+local predicate = function(item)
+    return item['disabled'] == nil or not item['disabled']
+end
+
+---@param item PostmanVariable
+---@return PostmanVariable
+local padronize = function(item)
+    local key = item.key ---@cast key string
+    if not key:match("^{{") then
+        key = "{{" .. key
+    end
+    if not key:match("}}$") then
+        key = key .. "}}"
+    end
+
+    item.key = key
+    return item
+end
+
+---@param auth PostmanAuth
+---@return httpgen.KeyValue
+local function get_auth(auth)
+    local tbl = {}
+
+    if not auth or auth == vim.NIL then
+        return tbl
+    end
+
+    for _, value in ipairs(auth[auth.type]) do
+        table.insert(tbl, {
+            key = value.key,
+            value = value.value
+        })
+    end
+
+    return tbl
+end
+
 --- get the tbl['variable'] in the current table
 ---@param tbl PostmanCollection | PostmanItemGroup | PostmanItem | PostmanUrl | string
 ---@return PostmanVariable[]
@@ -11,27 +51,6 @@ local function get_variables(tbl)
     local envs = tbl['variable'];
     if not envs or type(envs) == "string" then
         return {}
-    end
-
-    ---@param item PostmanVariable
-    ---@return boolean
-    local predicate = function(item)
-        return item['disabled'] == nil or not item['disabled']
-    end
-
-    ---@param item PostmanVariable
-    ---@return PostmanVariable
-    local padronize = function(item)
-        local key = item.key ---@cast key string
-        if not key:match("^{{") then
-            key = "{{" .. key
-        end
-        if not key:match("}}$") then
-            key = key .. "}}"
-        end
-
-        item.key = key
-        return item
     end
 
     if envs ~= nil and next(envs) ~= nil then
@@ -70,11 +89,22 @@ end
 
 ---check if its allowed to concatenate the header
 ---@param headers string|PostmanHeader[]
+---@param auth PostmanAuth
+---@param global_auth httpgen.KeyValue
 ---@param variables PostmanVariable[]
 ---@return string
-local function get_http_headers(headers, variables)
+local function get_http_headers(headers, auth, global_auth, variables)
     if type(headers) == "string" then
         error("Header is not in the correct format", 1)
+    end
+
+    local auth_to_add = get_auth(auth)
+    for _, value in ipairs(auth_to_add) do
+        table.insert(headers, value)
+    end
+
+    for _, value in ipairs(global_auth) do
+        table.insert(headers, value)
     end
 
     if table_utils.is_empty(table_utils.filter(function(h) return tostring(h.key):lower() == "accept" end, headers)) then
@@ -144,11 +174,12 @@ end
 
 ---@param request_name string
 ---@param request PostmanRequest
+---@param global_auth httpgen.KeyValue
 ---@param variables PostmanVariable
 ---@return string
-local function create_http_template_for(request_name, request, variables)
+local function create_http_template_for(request_name, request, global_auth, variables)
     local url = generate_url_encoded(request.url)
-    local headers = get_http_headers(request.header, variables)
+    local headers = get_http_headers(request.header, request.auth, global_auth, variables)
     local body = json_formatter:pretty_print(get_http_body(request.body))
 
     local data_to_parse = {
@@ -165,10 +196,11 @@ end
 ---iterate through the itens recursively and returns all itens to be parsed into file
 ---@generic T json as object
 ---@param tbl PostmanCollection | PostmanItem | PostmanItemGroup
+---@param global_auth httpgen.KeyValue
 ---@param acc_tbl Template
 ---@param host_variables PostmanVariable[]
 ---@return table<string>
-local function iterate_through_itens(tbl, acc_tbl, host_variables)
+local function iterate_through_itens(tbl, global_auth, acc_tbl, host_variables)
     local found_variables = get_variables(tbl)
     if found_variables then
         for _, value in ipairs(found_variables) do
@@ -179,7 +211,7 @@ local function iterate_through_itens(tbl, acc_tbl, host_variables)
     local item = tbl["item"];
     if item ~= nil then
         for idx, _ in ipairs(item) do
-            iterate_through_itens(item[idx], acc_tbl, host_variables)
+            iterate_through_itens(item[idx], global_auth, acc_tbl, host_variables)
         end
     end
 
@@ -190,7 +222,7 @@ local function iterate_through_itens(tbl, acc_tbl, host_variables)
         ---@cast tbl PostmanItem | PostmanItemGroup
         local req_name = get_request_or_folder_name(tbl)
 
-        local result = create_http_template_for(req_name, req, variables)
+        local result = create_http_template_for(req_name, req, global_auth, variables)
         table.insert(acc_tbl, result)
     end
 
@@ -201,7 +233,10 @@ end
 ---@param obj table
 ---@return table<string>
 function postman:execute(obj)
-    local template = iterate_through_itens(obj, {}, {})
+    ---@cast obj PostmanCollection
+    local envs = {} --TODO: load envs from other file and cache it
+    local global_auth = get_auth(obj.auth)
+    local template = iterate_through_itens(obj, global_auth, {}, envs)
     return template
 end
 

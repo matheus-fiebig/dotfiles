@@ -5,7 +5,7 @@ local api = {}
 ---get the adapter used to create the .http template
 ---@param type httpgen.Config.Type
 ---@return httpgen.Adapter
-local function get_adapter(_)
+local function get_adapter(type)
     return postman
 end
 
@@ -56,6 +56,7 @@ function api:new(opts)
 
     vim.api.nvim_create_user_command('HTTPGen', function(_)
         Snacks.picker.files({
+            ft = 'json',
             confirm = function(picker, item, _)
                 local cwd = vim.fn.getcwd()
                 local file_path = item.file:gsub("^%.", "", 1)
