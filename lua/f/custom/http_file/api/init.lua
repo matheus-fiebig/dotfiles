@@ -3,6 +3,7 @@ local adapters = {
 }
 
 local api = {}
+local envs = {}
 
 ---@param buf integer
 ---@param data string
@@ -11,17 +12,33 @@ local function write_into_buffer(buf, data)
     vim.api.nvim_buf_set_lines(buf, line_count, line_count, false, vim.split(data, "\n"))
 end
 
----@param opts httpgen.Config
-local function generate_http_file(opts)
-    local json_file = io.open(opts.source_path, "r")
+---@param source_path string
+---@return any
+local function read_json(source_path)
+    local json_file = io.open(source_path, "r")
     if not json_file then
         error('Erro ao abrir arquivo')
-        return;
     end
 
     local json = json_file:read("*a");
+
+    json_file:close();
+
+    return json
+end
+
+---@param opts httpgen.Config
+local function setup_envs(opts)
+    local json = read_json(opts.env_path)
     local adapter = adapters[opts.source_type]
-    local template = adapter:execute(vim.json.decode(json))
+    envs = adapter:get_env(vim.json.decode(json))
+end
+
+---@param opts httpgen.Config
+local function generate_http_file(opts)
+    local json = read_json(opts.source_path)
+    local adapter = adapters[opts.source_type]
+    local template = adapter:execute(envs, vim.json.decode(json))
 
     if opts.mode == 'single_buffer' then
         local buf = vim.api.nvim_create_buf(true, false)
@@ -37,37 +54,14 @@ local function generate_http_file(opts)
             write_into_buffer(buf, value)
         end
     end
-
-
-    json_file:close();
 end
 
----@param opts httpgen.Config
 ---@return httpgen
-function api:new(opts)
+function api:new()
     local obj = {
-        generate = function(_opts) generate_http_file(_opts) end
+        setup_envs = function(opts) setup_envs(opts) end,
+        generate = function(opts) generate_http_file(opts) end
     }
-
-    vim.api.nvim_create_user_command('HTTPGen', function(_)
-        Snacks.picker.files({
-            ft = 'json',
-            confirm = function(picker, item, _)
-                local cwd = vim.fn.getcwd()
-                local file_path = item.file:gsub("^%.", "", 1)
-                local absolute_path = cwd .. file_path;
-                picker:close()
-
-                obj.generate({
-                    source_path = absolute_path,
-                    source_type = opts.source_type,
-                    mode = opts.mode,
-                    env_path = opts.env_path
-                })
-            end,
-        })
-    end, {})
-
     return obj
 end
 

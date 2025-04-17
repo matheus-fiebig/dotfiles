@@ -14,7 +14,7 @@
                             "type": "text/plain"
                         },
                         "url": {
-                            "raw": "test.com.br"
+                            "raw": "{{abc}}"
                         },
                         "header": [
                             {

@@ -28,7 +28,7 @@
 ---@field mode httpgen.Config.Mode
 
 ---@class httpgen
----@field opts httpgen.Config
+---@field setup_envs function
 ---@field generate function
 
 --------------------------------------

@@ -1,13 +1,9 @@
 TODO
-- Adicionar suporte para env
-    - Adicionar comando para carregar
-    - Adicionar comando para trocar um campo especifico
-    - Salvar em algum cache isso
-
 Seria dahora
 - Adicionar suporte para swagger
 
 OK
+- Adicionar suporte para env
 - Adicionar suporte de Auth
 - Adicionar multiplos arquivos 
 - Adicionar comando de execucao 

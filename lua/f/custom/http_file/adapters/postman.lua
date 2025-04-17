@@ -229,12 +229,23 @@ local function iterate_through_itens(tbl, global_auth, acc_tbl, host_variables)
     return acc_tbl
 end
 
+---@param obj table env json as table
+---@return table<httpgen.KeyValue>
+function postman:get_env(obj)
+    local result = {}
+    for _, env in ipairs(obj.values) do
+        if predicate(env) then
+            table.insert(result, padronize(env))
+        end
+    end
+    return result
+end
+
 ---iterate through the itens recursively and append to file
----@param obj table
+---@param envs table<httpgen.KeyValue>  
+---@param obj PostmanCollection collection json as table
 ---@return table<string>
-function postman:execute(obj)
-    ---@cast obj PostmanCollection
-    local envs = {} --TODO: load envs from other file and cache it
+function postman:execute(envs, obj)
     local global_auth = get_auth(obj.auth)
     local template = iterate_through_itens(obj, global_auth, {}, envs)
     return template
