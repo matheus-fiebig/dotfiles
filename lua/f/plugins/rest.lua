@@ -8,6 +8,7 @@ return {
     ft = { "http", "rest" },
     opts = {
         -- your configuration comes here
+        additional_curl_options = { "--insecure" },
         global_keymaps = false,
     },
 }
