@@ -1,6 +1,7 @@
 local table_utils = require("f.custom.utils.table")
 local parser = require("f.custom.utils.parser")
 local json_formatter = require("f.custom.utils.json_formatter")
+local string_utils = require("f.custom.http_file.utils.string_utils")
 
 local postman = {}
 
@@ -121,28 +122,32 @@ local function get_http_headers(headers, auth, global_auth, variables)
         end
     end
 
-
     return table_utils.join(
         headers,
         "\n",
-        function(item) return item.key .. ": " .. item.value end,
-        function(item) return not item.disabled and item.key and item.value end
+        function(item) return tostring(item.key) .. ": " .. tostring(item.value) end,
+        function(item) return not item.disabled and tostring(item.key) and tostring(item.value) end
     )
 end
 
 ---check if its allowed to concatenate the header
 ---@param request PostmanRequestBody
----@return  table | nil
+---@return  table | string | nil
 local function get_http_body(request)
     if request == nil or table_utils.is_empty(request) then
         return nil
     end
 
     local raw_value = request.raw
-    if raw_value then
+    if raw_value and string_utils.is_json(raw_value) then
         return vim.json.decode(raw_value)
     end
 
+    if raw_value then
+        return raw_value
+    end
+
+    print('ccc')
     return nil
 end
 
@@ -242,7 +247,7 @@ function postman:get_env(obj)
 end
 
 ---iterate through the itens recursively and append to file
----@param envs table<httpgen.KeyValue>  
+---@param envs table<httpgen.KeyValue>
 ---@param obj PostmanCollection collection json as table
 ---@return table<string>
 function postman:execute(envs, obj)

@@ -1,136 +1,556 @@
 {
+    "info": {
+        "_postman_id": "cd7d7f1a-d462-464c-bccb-026878e36e38",
+        "name": "test-collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
     "item": [
         {
-            "name": "BulkAction",
-            "description": "These methods enable you to manage notary bulk actions.",
+            "name": "depth-one",
+            "description": null,
             "item": [
                 {
-                    "id": "e3b932ec-e2c6-49d0-b093-72750653db00",
-                    "name": "Returns the details of a single bulk action.",
-                    "request": {
-                        "name": "Returns the details of a single bulk action.",
-                        "description": {
-                            "content": "Given a bulk action ID, this method returns information about the corresponding actions.\n\n[Required authentication scopes](/platform/auth/reference/scopes/): `notary_read`, `signature`, `organization_read`.",
-                            "type": "text/plain"
-                        },
-                        "url": {
-                            "raw": "{{abc}}"
-                        },
-                        "header": [
-                            {
-                                "key": "Accept",
-                                "value": "application/json"
+                    "name": "depth-two",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "basic-auth",
+                            "request": {
+                                "auth": {
+                                    "type": "basic",
+                                    "basic": [
+                                        {
+                                            "key": "username",
+                                            "value": "{{access_token}}",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "password",
+                                            "value": "",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "saveHelperData",
+                                            "value": true,
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "key": "showPassword",
+                                            "value": false,
+                                            "type": "boolean"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "XDEBUG_SESSION",
+                                        "value": "PHPSTORM"
+                                    },
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic dFJ3a2dxelR1ZjFiaVV3OW82XzdKeW1KTmlqT2Z2Q3k6"
+                                    }
+                                ],
+                                "body": {},
+                                "url": {
+                                    "raw": "{{apiUrl}}/users/7?XDEBUG_SESSION_START=PHPSTORM",
+                                    "host": [
+                                        "{{apiUrl}}"
+                                    ],
+                                    "path": [
+                                        "users",
+                                        "7"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "XDEBUG_SESSION_START",
+                                            "value": "PHPSTORM"
+                                        }
+                                    ]
+                                }
                             },
-                            {
-                                "key": "Test",
-                                "value": "{{baseUrl}}"
-                            }
-                        ],
-                        "method": "GET",
-                        "body": {},
-                        "auth": null
-                    },
-                    "event": [],
-                    "protocolProfileBehavior": {
-                        "disableBodyPruning": true
-                    }
+                            "response": []
+                        }
+                    ],
+                    "_postman_isSubFolder": true
                 },
                 {
-                    "id": "cccbb073-3812-48dc-85ff-36f6f9b14783",
-                    "name": "Removes the specified action from the list of bulk actions.",
+                    "name": "basic-auth",
                     "request": {
-                        "name": "Removes the specified action from the list of bulk actions.",
-                        "description": {
-                            "content": "Given a bulk action ID, this method removes the corresponding action from the stored list of bulk actions. This does not impact the results of the bulk action itself.\n\n[Required authentication scopes](/platform/auth/reference/scopes/): `notary_write`, `signature`, `organization_read`.",
-                            "type": "text/plain"
-                        },
-                        "url": {
-                            "path": [
-                                "v1.0",
-                                "organizations",
-                                ":organizationId",
-                                "bulk_action",
-                                ":bulkActionId"
-                            ],
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "query": [],
-                            "variable": [
+                        "auth": {
+                            "type": "basic",
+                            "basic": [
                                 {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "organizationId",
-                                    "disabled": false,
-                                    "description": {
-                                        "content": "(Required) The organization's GUID.",
-                                        "type": "text/plain"
-                                    }
+                                    "key": "username",
+                                    "value": "{{access_token}}",
+                                    "type": "string"
                                 },
                                 {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "bulkActionId",
-                                    "disabled": false,
-                                    "description": {
-                                        "content": "(Required) The GUID of the bulk action.",
-                                        "type": "text/plain"
-                                    }
+                                    "key": "password",
+                                    "value": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "saveHelperData",
+                                    "value": true,
+                                    "type": "boolean"
+                                },
+                                {
+                                    "key": "showPassword",
+                                    "value": false,
+                                    "type": "boolean"
                                 }
                             ]
                         },
+                        "method": "GET",
                         "header": [
                             {
-                                "key": "Accept",
-                                "value": "text/plain"
+                                "key": "XDEBUG_SESSION",
+                                "value": "PHPSTORM"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Basic dFJ3a2dxelR1ZjFiaVV3OW82XzdKeW1KTmlqT2Z2Q3k6"
                             }
                         ],
-                        "method": "DELETE",
                         "body": {},
-                        "auth": null
+                        "url": {
+                            "raw": "{{apiUrl}}/users/7?XDEBUG_SESSION_START=PHPSTORM",
+                            "host": [
+                                "{{apiUrl}}"
+                            ],
+                            "path": [
+                                "users",
+                                "7"
+                            ],
+                            "query": [
+                                {
+                                    "key": "XDEBUG_SESSION_START",
+                                    "value": "PHPSTORM"
+                                }
+                            ]
+                        }
                     },
-                    "event": [],
-                    "protocolProfileBehavior": {
-                        "disableBodyPruning": true
-                    }
+                    "response": []
                 }
             ]
-        } 
-    ],
-    "auth": {
-        "type": "apikey",
-        "apikey": [
-            {
-                "type": "any",
-                "value": "Authorization",
-                "key": "key"
-            },
-            {
-                "type": "any",
-                "value": "{{apiKey}}",
-                "key": "value"
-            },
-            {
-                "type": "any",
-                "value": "header",
-                "key": "in"
-            }
-        ]
-    },
-    "event": [],
-    "variable": [
+        },
         {
-            "key": "baseUrl",
-            "value": "https://notary-s.docusign.net/restapi"
+            "name": "post-form-data",
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "key": "username",
+                            "value": "{{access_token}}",
+                            "type": "string"
+                        },
+                        {
+                            "key": "password",
+                            "value": "",
+                            "type": "string"
+                        },
+                        {
+                            "key": "saveHelperData",
+                            "value": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "showPassword",
+                            "value": false,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "XDEBUG_SESSION",
+                        "value": "PHPSTORM"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Basic dFJ3a2dxelR1ZjFiaVV3OW82XzdKeW1KTmlqT2Z2Q3k6"
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "firstKey",
+                            "value": "some-value",
+                            "description": "",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{apiUrl}}/users/7?XDEBUG_SESSION_START=PHPSTORM",
+                    "host": [
+                        "{{apiUrl}}"
+                    ],
+                    "path": [
+                        "users",
+                        "7"
+                    ],
+                    "query": [
+                        {
+                            "key": "XDEBUG_SESSION_START",
+                            "value": "PHPSTORM"
+                        }
+                    ]
+                },
+                "description": "description"
+            },
+            "response": []
+        },
+        {
+            "name": "post-x-www-form-data",
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "key": "username",
+                            "value": "{{access_token}}",
+                            "type": "string"
+                        },
+                        {
+                            "key": "password",
+                            "value": "",
+                            "type": "string"
+                        },
+                        {
+                            "key": "saveHelperData",
+                            "value": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "showPassword",
+                            "value": false,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "XDEBUG_SESSION",
+                        "value": "PHPSTORM"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Basic dFJ3a2dxelR1ZjFiaVV3OW82XzdKeW1KTmlqT2Z2Q3k6"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {
+                            "key": "chat_id",
+                            "type": "text",
+                            "value": "1"
+                        },
+                        {
+                            "key": "notification",
+                            "type": "text",
+                            "value": "0"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{apiUrl}}/users/7?XDEBUG_SESSION_START=PHPSTORM",
+                    "host": [
+                        "{{apiUrl}}"
+                    ],
+                    "path": [
+                        "users",
+                        "7"
+                    ],
+                    "query": [
+                        {
+                            "key": "XDEBUG_SESSION_START",
+                            "value": "PHPSTORM"
+                        }
+                    ]
+                },
+                "description": "description"
+            },
+            "response": []
+        },
+        {
+            "name": "post-raw-text",
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "key": "username",
+                            "value": "{{access_token}}",
+                            "type": "string"
+                        },
+                        {
+                            "key": "password",
+                            "value": "",
+                            "type": "string"
+                        },
+                        {
+                            "key": "saveHelperData",
+                            "value": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "showPassword",
+                            "value": false,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "XDEBUG_SESSION",
+                        "value": "PHPSTORM"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Basic dFJ3a2dxelR1ZjFiaVV3OW82XzdKeW1KTmlqT2Z2Q3k6"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "raw text"
+                },
+                "url": {
+                    "raw": "{{apiUrl}}/users/7?XDEBUG_SESSION_START=PHPSTORM",
+                    "host": [
+                        "{{apiUrl}}"
+                    ],
+                    "path": [
+                        "users",
+                        "7"
+                    ],
+                    "query": [
+                        {
+                            "key": "XDEBUG_SESSION_START",
+                            "value": "PHPSTORM"
+                        }
+                    ]
+                },
+                "description": "description"
+            },
+            "response": []
+        },
+        {
+            "name": "post-raw-json",
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "key": "username",
+                            "value": "{{access_token}}",
+                            "type": "string"
+                        },
+                        {
+                            "key": "password",
+                            "value": "",
+                            "type": "string"
+                        },
+                        {
+                            "key": "saveHelperData",
+                            "value": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "showPassword",
+                            "value": false,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "XDEBUG_SESSION",
+                        "value": "PHPSTORM"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Basic dFJ3a2dxelR1ZjFiaVV3OW82XzdKeW1KTmlqT2Z2Q3k6"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n\t\"key-json\" : \"value\"\n}"
+                },
+                "url": {
+                    "raw": "{{apiUrl}}/users/7?XDEBUG_SESSION_START=PHPSTORM",
+                    "host": [
+                        "{{apiUrl}}"
+                    ],
+                    "path": [
+                        "users",
+                        "7"
+                    ],
+                    "query": [
+                        {
+                            "key": "XDEBUG_SESSION_START",
+                            "value": "PHPSTORM"
+                        }
+                    ]
+                },
+                "description": "description"
+            },
+            "response": []
+        },
+        {
+            "name": "post-raw-xml",
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "key": "username",
+                            "value": "{{access_token}}",
+                            "type": "string"
+                        },
+                        {
+                            "key": "password",
+                            "value": "",
+                            "type": "string"
+                        },
+                        {
+                            "key": "saveHelperData",
+                            "value": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "showPassword",
+                            "value": false,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "XDEBUG_SESSION",
+                        "value": "PHPSTORM"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Basic dFJ3a2dxelR1ZjFiaVV3OW82XzdKeW1KTmlqT2Z2Q3k6"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/xml"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "<attribute></attribute>"
+                },
+                "url": {
+                    "raw": "{{apiUrl}}/users/7?XDEBUG_SESSION_START=PHPSTORM",
+                    "host": [
+                        "{{apiUrl}}"
+                    ],
+                    "path": [
+                        "users",
+                        "7"
+                    ],
+                    "query": [
+                        {
+                            "key": "XDEBUG_SESSION_START",
+                            "value": "PHPSTORM"
+                        }
+                    ]
+                },
+                "description": "description"
+            },
+            "response": []
+        },
+        {
+            "name": "post-raw-html",
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "key": "username",
+                            "value": "{{access_token}}",
+                            "type": "string"
+                        },
+                        {
+                            "key": "password",
+                            "value": "",
+                            "type": "string"
+                        },
+                        {
+                            "key": "saveHelperData",
+                            "value": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "showPassword",
+                            "value": false,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "XDEBUG_SESSION",
+                        "value": "PHPSTORM"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Basic dFJ3a2dxelR1ZjFiaVV3OW82XzdKeW1KTmlqT2Z2Q3k6"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "text/html"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "<html>\n<body>\n</body>\n</html>"
+                },
+                "url": {
+                    "raw": "{{apiUrl}}/users/7?XDEBUG_SESSION_START=PHPSTORM",
+                    "host": [
+                        "{{apiUrl}}"
+                    ],
+                    "path": [
+                        "users",
+                        "7"
+                    ],
+                    "query": [
+                        {
+                            "key": "XDEBUG_SESSION_START",
+                            "value": "PHPSTORM"
+                        }
+                    ]
+                },
+                "description": "description"
+            },
+            "response": []
         }
-    ],
-    "info": {
-        "_postman_id": "ed20c271-ef69-4cea-99d6-6a0aa5c1aa92",
-        "name": "Notary API",
-        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-        "description": {
-            "content": "The Notary Service orchestrates notary workflows, managing notary invites and users, notary seals, and notary journal input and export.\r\n\r\nNOTE: All query string parameters must be URL encoded for special characters.\n\nContact Support:\n Name: DocuSign Developer Center\n Email: devcenter@docusign.com",
-            "type": "text/plain"
-        }
-    }
+    ]
 }
