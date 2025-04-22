@@ -1,5 +1,6 @@
 local adapters = {
-    postman = require('f.custom.http_file.adapters.postman')
+    postman = require('f.custom.http_file.adapters.postman'),
+    a = {}
 }
 
 local api = {}
@@ -31,6 +32,11 @@ end
 local function setup_envs(opts)
     local json = read_json(opts.env_path)
     local adapter = adapters[opts.source_type]
+
+    if not adapter['get_env'] then
+        error(opts.source_type .. " does not implements execute")
+    end
+
     envs = adapter:get_env(vim.json.decode(json))
 end
 
@@ -38,6 +44,11 @@ end
 local function generate_http_file(opts)
     local json = read_json(opts.source_path)
     local adapter = adapters[opts.source_type]
+
+    if not adapter['execute'] then
+        error(opts.source_type .. " does not implements execute")
+    end
+
     local template = adapter:execute(envs, vim.json.decode(json))
 
     if opts.mode == 'single_buffer' then

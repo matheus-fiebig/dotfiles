@@ -9,7 +9,7 @@ local template = "###\n# {{name}}\n{{method}} {{url}}\n{{headers}}\n\n{{body}}\n
 ---@return string
 M.repl_variables = function(text, variables)
     local found_variable = table_utils.filter(function(item)
-        local matched = text:find(item.key, 1, true)
+        local matched = tostring(text):find(tostring(item.key), 1, true)
         return not not matched and matched > 0
     end, variables)
 
