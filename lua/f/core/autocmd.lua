@@ -8,3 +8,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
+
+vim.api.nvim_create_user_command('KulalaSendRequest', function(_)
+    require("kulala").run()
+end, {})
+
+vim.api.nvim_create_user_command('KulalaScratchpad', function(_)
+    require("kulala").scratchpad()
+end, {})

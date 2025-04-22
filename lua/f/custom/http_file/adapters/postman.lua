@@ -125,7 +125,7 @@ local function get_http_headers(headers, auth, global_auth, variables)
     return table_utils.join(
         headers,
         "\n",
-        function(item) return item.key .. " " .. item.value end,
+        function(item) return item.key .. ": " .. item.value end,
         function(item) return not item.disabled and item.key and item.value end
     )
 end
