@@ -69,8 +69,9 @@ return {
                         min_keyword_length = 1,
                         score_offset = 4,
                     }
-                }
+                },
             },
+            cmdline = { enabled = false },
             signature = { enabled = true },
             keymap = {
                 ["<C-space>"] = { "show", 'show_documentation', 'hide_documentation' },
