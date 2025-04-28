@@ -57,12 +57,18 @@ keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 
 -- debug
 vim.cmd [[nnoremap <F5> <nop>]]
-keymap.set("n", "<leader>5", ":DapContinue<CR>")
-keymap.set("n", "8", ":DapStepOver<CR>")
-keymap.set("n", "9", ":DapStepInto<CR>")
-keymap.set("n", "<leader>9", ":DapToggleBreakpoint<CR>")
+keymap.set("n", "<F5>", ":DapContinue<CR>")
+keymap.set("n", "<F9>", ":DapToggleBreakpoint<CR>")
+keymap.set("n", "<F10>", ":DapStepOver<CR>")
+keymap.set("n", "<F11>", ":DapStepInto<CR>")
 --keymap.set('n', '<leader>g', ":lua require'dap'.goto()<CR>", { noremap = true, silent = true }) C# does not support
 keymap.set("n", "K", vim.lsp.buf.hover)
+keymap.set("n", "T", function ()
+    if require("dap").status() ~= nil then
+        local word_under_cursor = vim.fn.expand("<cword>")
+        require("dapui").eval(word_under_cursor)
+    end
+end)
 
 
 -- tree view
