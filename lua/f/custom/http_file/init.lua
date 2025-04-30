@@ -23,38 +23,24 @@ M.setup = function(opts)
     local httpgen = api:new()
 
     if opts.env_path then
-        httpgen.setup_envs({
-            source_type = opts.source_type,
-            mode = opts.mode,
-            env_path = opts.env_path
-        })
+        httpgen.setup_envs(opts)
     end
 
     if opts.source_path then
-        httpgen.setup_envs({
-            source_type = opts.source_type,
-            mode = opts.mode,
-            source_path = opts.env_path
-        })
+        httpgen.setup_envs(opts)
     end
 
     vim.api.nvim_create_user_command('HTTPEnv', function(_)
         open_picker(function(path)
-            httpgen.setup_envs({
-                source_type = opts.source_type,
-                mode = opts.mode,
-                env_path = path
-            })
+            opts.env_path = path
+            httpgen.setup_envs(opts)
         end)
     end, {})
 
     vim.api.nvim_create_user_command('HTTPGen', function(_)
         open_picker(function(path)
-            httpgen.generate({
-                source_path = path,
-                source_type = opts.source_type,
-                mode = opts.mode,
-            })
+            opts.source_path = path
+            httpgen.generate(opts)
         end)
     end, {})
 end

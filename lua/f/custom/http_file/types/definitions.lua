@@ -26,6 +26,7 @@
 ---@field source_path string | nil
 ---@field source_type httpgen.Config.Type
 ---@field mode httpgen.Config.Mode
+---@field output_dir string
 
 ---@class httpgen
 ---@field setup_envs function

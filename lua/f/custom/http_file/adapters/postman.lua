@@ -4,6 +4,7 @@ local json_formatter = require("f.custom.utils.json_formatter")
 local string_utils = require("f.custom.http_file.utils.string_utils")
 
 local postman = {}
+local req_name_holder = 0;
 
 ---@param item PostmanVariable
 ---@return boolean
@@ -83,9 +84,10 @@ end
 local function get_request_or_folder_name(tbl)
     local name = tbl.name
     if not name then
-        name = "Default name"
+        name = "Unnamed "
     end
-    return name
+    req_name_holder = req_name_holder + 1
+    return name .. req_name_holder
 end
 
 ---check if its allowed to concatenate the header
@@ -147,7 +149,6 @@ local function get_http_body(request)
         return raw_value
     end
 
-    print('ccc')
     return nil
 end
 
@@ -228,7 +229,7 @@ local function iterate_through_itens(tbl, global_auth, acc_tbl, host_variables)
         local req_name = get_request_or_folder_name(tbl)
 
         local result = create_http_template_for(req_name, req, global_auth, variables)
-        table.insert(acc_tbl, result)
+        table.insert(acc_tbl, { template = result, request_name = req_name })
     end
 
     return acc_tbl
@@ -251,6 +252,7 @@ end
 ---@param obj PostmanCollection collection json as table
 ---@return table<string>
 function postman:execute(envs, obj)
+    req_name_holder = 0
     local global_auth = get_auth(obj.auth)
     local template = iterate_through_itens(obj, global_auth, {}, envs)
     return template

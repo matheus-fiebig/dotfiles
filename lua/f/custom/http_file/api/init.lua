@@ -1,10 +1,25 @@
 local adapters = {
     postman = require('f.custom.http_file.adapters.postman'),
-    a = {}
 }
 
 local api = {}
 local envs = {}
+
+---@param buffers table<integer>
+local function clean_up_buf(buffers)
+    for _, buf in ipairs(buffers) do
+        vim.api.nvim_buf_delete(buf, { force = true })
+    end
+end
+
+---@param buf integer
+---@param path string
+---@param bkp_buf integer
+local function save_buff(buf, path, bkp_buf)
+    vim.api.nvim_set_current_buf(buf)
+    vim.cmd('silent sav!' .. path)
+    vim.api.nvim_set_current_buf(bkp_buf)
+end
 
 ---@param buf integer
 ---@param data string
@@ -22,9 +37,7 @@ local function read_json(source_path)
     end
 
     local json = json_file:read("*a");
-
     json_file:close();
-
     return json
 end
 
@@ -49,22 +62,44 @@ local function generate_http_file(opts)
         error(opts.source_type .. " does not implements execute")
     end
 
+    if opts.output_dir then
+        vim.cmd("!mkdir -p " .. opts.output_dir)
+    end
+
     local template = adapter:execute(envs, vim.json.decode(json))
+
+    local bkp_buf = vim.api.nvim_get_current_buf()
+    local buffers = {}
 
     if opts.mode == 'single_buffer' then
         local buf = vim.api.nvim_create_buf(true, false)
         vim.api.nvim_buf_set_name(buf, 'collection.http')
+
         for _, value in ipairs(template) do
-            write_into_buffer(buf, value)
+            write_into_buffer(buf, value.template)
+        end
+
+        if opts.output_dir then
+            table.insert(buffers, buf)
+            save_buff(buf, opts.output_dir .. 'collection.http', bkp_buf)
         end
     end
 
     if opts.mode == 'multi_buffer' then
         for _, value in ipairs(template) do
-            local buf = vim.api.nvim_create_buf(true, false)
-            write_into_buffer(buf, value)
+            local buf = vim.api.nvim_create_buf(false, false)
+
+            vim.api.nvim_buf_set_name(buf, value.request_name .. '.http')
+            write_into_buffer(buf, value.template)
+
+            if opts.output_dir then
+                table.insert(buffers, buf)
+                save_buff(buf, opts.output_dir .. value.request_name .. '.http', bkp_buf)
+            end
         end
     end
+
+    clean_up_buf(buffers)
 end
 
 ---@return httpgen
