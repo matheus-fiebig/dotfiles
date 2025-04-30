@@ -87,7 +87,7 @@ local function get_request_or_folder_name(tbl)
         name = "Unnamed "
     end
     req_name_holder = req_name_holder + 1
-    return name .. req_name_holder
+    return name .. "--" .. req_name_holder
 end
 
 ---check if its allowed to concatenate the header

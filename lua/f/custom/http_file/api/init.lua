@@ -17,7 +17,7 @@ end
 ---@param bkp_buf integer
 local function save_buff(buf, path, bkp_buf)
     vim.api.nvim_set_current_buf(buf)
-    vim.cmd('silent sav!' .. path)
+    vim.cmd('silent write!' .. path)
     vim.api.nvim_set_current_buf(bkp_buf)
 end
 
@@ -99,7 +99,9 @@ local function generate_http_file(opts)
         end
     end
 
-    clean_up_buf(buffers)
+    vim.defer_fn(function()
+        clean_up_buf(buffers)
+    end, 1000)
 end
 
 ---@return httpgen
