@@ -33,10 +33,9 @@ local function build_dotnet(execute_previous)
     }
 
     local cmd = 'dotnet build -c Debug ' .. default_path .. ' > /dev/null'
-    Snacks.notifier('Cmd to execute: \n' .. cmd, "info", notify_opt)
-
     local f = os.execute(cmd)
     Snacks.notifier('Finished with code ' .. f, "info", notify_opt)
+    vim.diagnostic.setqflist()
 end
 
 ---@params execute_previou boolean
