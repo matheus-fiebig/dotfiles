@@ -1,6 +1,5 @@
 return {
     'nvim-tree/nvim-web-devicons',
-    'DaikyXendo/nvim-material-icon',
     {
         'romgrk/barbar.nvim',
         dependencies = {

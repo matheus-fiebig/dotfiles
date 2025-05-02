@@ -52,7 +52,8 @@ keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end,
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 keymap.set('n', '<leader>rf', "<cmd>Trouble lsp toggle focus=true wig.position=right<cr>", { desc = "Go to definition" })
-keymap.set('n', '<leader>dn', "<cmd>Trouble diagnostics toggle focus=false wig.position=right<cr>", { desc = "Go to definition" })
+keymap.set('n', '<leader>dn', "<cmd>Trouble diagnostics toggle focus=false wig.position=right<cr>",
+    { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 
 -- debug
@@ -63,7 +64,7 @@ keymap.set("n", "<F10>", ":DapStepOver<CR>")
 keymap.set("n", "<F11>", ":DapStepInto<CR>")
 --keymap.set('n', '<leader>g', ":lua require'dap'.goto()<CR>", { noremap = true, silent = true }) C# does not support
 keymap.set("n", "K", vim.lsp.buf.hover)
-keymap.set("n", "T", function ()
+keymap.set("n", "T", function()
     if require("dap").status() ~= nil then
         local word_under_cursor = vim.fn.expand("<cword>")
         require("dapui").eval(word_under_cursor)

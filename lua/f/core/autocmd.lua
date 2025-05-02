@@ -16,3 +16,11 @@ end, {})
 vim.api.nvim_create_user_command('KulalaScratchpad', function(_)
     require("kulala").scratchpad()
 end, {})
+
+
+
+vim.api.nvim_create_user_command('LspHintsToggle', function(_)
+    local enabled = not vim.lsp.inlay_hint.is_enabled({})
+    vim.lsp.inlay_hint.enable(enabled)
+    vim.notify("Inlay hints: " .. (enabled and " on" or "off"))
+end, {})

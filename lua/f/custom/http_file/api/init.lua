@@ -80,7 +80,6 @@ local function generate_http_file(opts)
         end
 
         if opts.output_dir then
-            table.insert(buffers, buf)
             save_buff(buf, opts.output_dir .. 'collection.http', bkp_buf)
         end
     end
