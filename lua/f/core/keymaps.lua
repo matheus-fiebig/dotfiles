@@ -9,6 +9,10 @@ vim.cmd [[nnoremap # <nop>]]
 vim.cmd [[nnoremap <leader>c <nop>]]
 vim.cmd [[nnoremap <leader>dn <nop>]]
 vim.cmd [[nnoremap <leader>rf <nop>]]
+vim.cmd [[nnoremap <c-z> <nop>]]
+vim.cmd [[nnoremap <C-g> <nop>]]
+vim.cmd [[nnoremap <C-f> <nop>]]
+vim.cmd [[nnoremap <F5> <nop>]]
 
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
@@ -19,6 +23,7 @@ keymap.set({ "n", "v" }, "<C-h>", "b", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "{", "{", { desc = "Jump word" })
 keymap.set({ "n", "v" }, "#", "}", { desc = "Jump word" })
 keymap.set("n", "<leader>~", "<cmd>e#<CR>", { desc = "PreviousFile" })
+keymap.set('n', '<C-f>', "za", { desc = "Folding" })
 
 -- telescope
 keymap.set("n", "<leader>H", function() require 'telescope.builtin'.commands() end)
@@ -46,7 +51,7 @@ keymap.set("n", "<C-e>", "<C-W>-", { desc = "Decrease window size vertically" })
 keymap.set("n", "<C-a>", "<C-W><", { desc = "Decrease window size horziontally" })
 keymap.set("n", "<C-s>", "<C-W>=", { desc = "Equalize window size " })
 
---code actions
+--lsp / dap
 keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" })
 keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, { desc = "Format" })
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
@@ -55,14 +60,10 @@ keymap.set('n', '<leader>rf', "<cmd>Trouble lsp toggle focus=true wig.position=r
 keymap.set('n', '<leader>dn', "<cmd>Trouble diagnostics toggle focus=false wig.position=right<cr>",
     { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
-
--- debug
-vim.cmd [[nnoremap <F5> <nop>]]
 keymap.set("n", "<F5>", ":DapContinue<CR>")
 keymap.set("n", "<F9>", ":DapToggleBreakpoint<CR>")
 keymap.set("n", "<F10>", ":DapStepOver<CR>")
 keymap.set("n", "<F11>", ":DapStepInto<CR>")
---keymap.set('n', '<leader>g', ":lua require'dap'.goto()<CR>", { noremap = true, silent = true }) C# does not support
 keymap.set("n", "K", vim.lsp.buf.hover)
 keymap.set("n", "T", function()
     if require("dap").status() ~= nil then
@@ -70,22 +71,14 @@ keymap.set("n", "T", function()
         require("dapui").eval(word_under_cursor)
     end
 end)
-
+--keymap.set('n', '<leader>g', ":lua require'dap'.goto()<CR>", { noremap = true, silent = true }) No support for C#
 
 -- tree view
 keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-
 keymap.set("n", "<leader>a", "<cmd>AerialToggle left<CR>", { desc = "Toggle file explorer" })
 
---ufo
-vim.cmd [[nnoremap <C-f> <nop>]]
-keymap.set('n', '<C-f>', "za")
-
 --octo
-vim.cmd [[nnoremap <C-g> <nop>]]
 keymap.set('n', '<C-g>', "<cmd>Octo actions<CR>")
 
 --easy motion
 vim.cmd [[nmap E <Plug>(easymotion-bd-f)]]
-
-vim.cmd [[nnoremap <c-z> <nop>]]
