@@ -30,6 +30,11 @@ Instalar o .NET
   sudo apt-get update && \
   sudo apt-get install -y dotnet-sdk-6.0
 
+Para rodar com csharp-ls (testar)
+sudo rm -rf /usr/lib/dotnet/shared && sudo ln -s /usr/share/dotnet/shared/ /usr/lib/dotnet/shared --criar link simbolico do runtime para a pasta certa
+sudo ln -s /usr/share/dotnet/sdk /usr/lib/dotnet/sdk
+sudo ln -s /usr/share/dotnet/sdk-manifests /usr/lib/dotnet/sdk-manifests
+sudo ln -s /usr/share/dotnet/templates /usr/lib/dotnet/templates --verificar um link simbolico ls -alh /usr/lib/dotnet/
 dotnet tool install --global csharp-ls
 
 Installing MONO 
