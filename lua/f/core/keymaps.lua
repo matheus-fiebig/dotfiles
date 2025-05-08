@@ -13,6 +13,7 @@ vim.cmd [[nnoremap <c-z> <nop>]]
 vim.cmd [[nnoremap <C-g> <nop>]]
 vim.cmd [[nnoremap <C-f> <nop>]]
 vim.cmd [[nnoremap <F5> <nop>]]
+vim.cmd [[nnoremap S <nop>]]
 
 -- general
 keymap.set({ "n", "v" }, "<CR>", ":noh<CR><CR>", { desc = "Clear search highlights" })
