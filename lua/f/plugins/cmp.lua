@@ -1,7 +1,7 @@
 return {
     {
         'saghen/blink.cmp',
-        dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip', 'giuxtaposition/blink-cmp-copilot' },
+        dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip' },
         opts = {
             appearance = {
                 nerd_font_variant = 'mono',
