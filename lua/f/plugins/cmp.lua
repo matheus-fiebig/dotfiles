@@ -43,16 +43,16 @@ return {
                 },
             },
             sources = {
-                default = { 'lsp', 'buffer', 'path', 'snippets', "copilot" },
+                default = { 'lsp', 'buffer', 'path', 'snippets' },
                 per_filetype = { sql = { 'dadbod' } },
                 providers = {
                     dadbod = { module = "vim_dadbod_completion.blink" },
-                    copilot = {
-                        name = "copilot",
-                        module = "blink-cmp-copilot",
-                        score_offset = 100,
-                        async = true,
-                    },
+                    --copilot = {
+                        --name = "copilot",
+                        --module = "blink-cmp-copilot",
+                        --score_offset = 100,
+                        --async = true,
+                    --},
                     lsp = {
                         min_keyword_length = 0,
                         score_offset = 0,
