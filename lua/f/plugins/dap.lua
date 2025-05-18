@@ -28,9 +28,9 @@ return {
             local debuggers_folder = vim.fn.stdpath('data') .. "/mason"
 
             -- automatically setup dap ui
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open {}
-            end
+            --dap.listeners.after.event_initialized["dapui_config"] = function()
+            --dapui.open {}
+            --end
             dap.listeners.before.event_terminated["dapui_config"] = function()
                 dapui.close {}
             end
@@ -104,17 +104,28 @@ return {
                     current_frame = "",
                     expanded = ""
                 },
-                layouts = { {
-                    elements = { {
-                        id = "scopes",
-                        size = 0.5
-                    }, {
-                        id = "repl",
-                        size = 0.5
-                    } },
-                    position = "left",
-                    size = 35
-                } },
+                layouts = {
+                    {
+                        elements = {
+                            {
+                                id = "repl",
+                                size = 1
+                            }
+                        },
+                        position = "bottom",
+                        size = 10
+                    },
+                    {
+                        elements = {
+                            {
+                                id = "scopes",
+                                size = 1
+                            },
+                        },
+                        position = "left",
+                        size = 30
+                    }
+                },
                 mappings = {
                     edit = "e",
                     expand = { "<CR>", "<2-LeftMouse>" },
