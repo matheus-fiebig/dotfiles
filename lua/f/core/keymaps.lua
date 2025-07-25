@@ -57,8 +57,9 @@ keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" })
 keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, { desc = "Format" })
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
-keymap.set('n', '<leader>rf', "<cmd>Trouble lsp toggle focus=true wig.position=right<cr>", { desc = "Go to definition" })
-keymap.set('n', '<leader>dn', "<cmd>Trouble diagnostics toggle focus=false wig.position=right<cr>",
+keymap.set('n', '<leader>rf', "<cmd>Telescope lsp_references <CR>", { desc = "Go to definition" })
+keymap.set("n", "<leader>a", "<cmd>Telsecope lsp_document_symbols<CR>", { desc = "Toggle symbols" })
+keymap.set('n', '<leader>dn', "<cmd>Trouble diagnostics toggle focus=true<cr>",
     { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })
 keymap.set("n", "<F5>", ":DapContinue<CR>")
@@ -76,7 +77,6 @@ end)
 
 -- tree view
 keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-keymap.set("n", "<leader>a", "<cmd>AerialToggle left<CR>", { desc = "Toggle file explorer" })
 
 --octo
 keymap.set('n', '<C-g>', "<cmd>Octo actions<CR>")

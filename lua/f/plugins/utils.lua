@@ -14,12 +14,6 @@ return {
         "preservim/nerdcommenter",
     },
     {
-        "stevearc/aerial.nvim",
-        config = function()
-            require("aerial").setup({})
-        end
-    },
-    {
         'folke/trouble.nvim',
         config = function()
             require('trouble').setup({

@@ -13,6 +13,15 @@ return {
         telescope.setup({
             defaults = {
                 path_display = { "smart" },
+                file_ignore_patterns = {
+                    "node_modules/.*",
+                    "%.env",
+                    "yarn.lock",
+                    "package-lock.json",
+                    "lazy-lock.json",
+                    "target/.*",
+                    "%.uid"
+                },
             },
             extensions = {
                 fzf = {

@@ -41,8 +41,15 @@ return {
     },
     {
         'neanias/everforest-nvim',
+    },
+    {
+        'bartekjaszczak/distinct-nvim',
         config = function()
-            vim.cmd("colorscheme everforest")
+            require("distinct").setup({
+                doc_comments_different_color = true, -- Use different colour for documentation comments
+            })
+
+            vim.cmd("colorscheme distinct")
         end
     },
     {
