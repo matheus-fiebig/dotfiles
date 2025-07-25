@@ -22,3 +22,19 @@ vim.api.nvim_create_user_command('LspToggleHints', function(_)
     vim.lsp.inlay_hint.enable(enabled)
     vim.notify("Inlay hints: " .. (enabled and " on" or "off"))
 end, {})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*.cs",
+    callback = function()
+        local current_buf_path = vim.api.nvim_buf_get_name(0)
+        if current_buf_path == "" then
+            current_buf_path = vim.fn.getcwd()
+        end
+        local start_path = vim.fn.fnamemodify(current_buf_path, ":h")
+        local sln_files = vim.fs.find(
+            function(name, _) return name:match('%.sln$') ~= nil end,
+            { upward = true, path = start_path, type = 'file' }
+        )
+        vim.fn.system("dotnet build " .. sln_files[1])
+    end,
+})
