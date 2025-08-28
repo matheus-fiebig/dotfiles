@@ -27,10 +27,6 @@ return {
             local dapui = require('dapui')
             local debuggers_folder = vim.fn.stdpath('data') .. "/mason"
 
-            -- automatically setup dap ui
-            --dap.listeners.after.event_initialized["dapui_config"] = function()
-            --dapui.open {}
-            --end
             dap.listeners.before.event_terminated["dapui_config"] = function()
                 dapui.close {}
             end
@@ -66,10 +62,30 @@ return {
                     program = function()
                         return Build_and_run_dotnet();
                     end
+                },
+                {
+                    type = "coreclr",
+                    name = "launch - netcoredbg - https",
+                    request = "launch",
+                    cwd = '${workspaceFolder}',
+                    env = {
+                        ASPNETCORE_ENVIRONMENT = function()
+                            return "Development"
+                        end,
+                        ASPNETCORE_URLS = function()
+                            local socket = require("f.custom.utils.socket")
+                            local port = socket:find_free_port(5000, 9000)
+                            return "https://localhost:" .. tostring(port)
+                        end
+                    },
+                    program = function()
+                        return Build_and_run_dotnet();
+                    end
                 }
             }
         end,
     },
+
     {
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },

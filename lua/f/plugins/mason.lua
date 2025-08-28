@@ -14,20 +14,13 @@ return {
 
             local lspconfig = require("lspconfig")
 
-            require("mason-lspconfig").setup_handlers {
-                function(server_name)
-                    lspconfig[server_name].setup {
-                        on_attach = function(client)
-                            if client.server_capabilities.signatureHelpProvider then
-                                require('lsp-overloads').setup(client, {})
-                            end
-                        end
-                    }
-                end,
-            }
 
             lspconfig.ts_ls.setup {
                 filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+            }
+
+            lspconfig.csharp_ls.setup {
+                filetypes = { 'cs' }
             }
 
             lspconfig.lua_ls.setup {
@@ -52,7 +45,6 @@ return {
                 },
             }
 
-            lspconfig.volar.setup {}
             lspconfig.angularls.setup {}
         end
     },

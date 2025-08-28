@@ -1,4 +1,4 @@
-return {
+local M = {
     {
         'easymotion/vim-easymotion'
     },
@@ -6,9 +6,6 @@ return {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         config = true
-    },
-    {
-        "airblade/vim-rooter"
     },
     {
         "preservim/nerdcommenter",
@@ -46,3 +43,11 @@ return {
         end,
     }
 }
+
+if not os.getenv("IS_WORK") then
+    table.insert(M, {
+        "airblade/vim-rooter"
+    })
+end
+
+return M
