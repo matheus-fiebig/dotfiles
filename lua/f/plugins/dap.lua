@@ -58,6 +58,10 @@ return {
                         ASPNETCORE_ENVIRONMENT = function()
                             return "Development"
                         end,
+                        ASPNETCORE_URLS = function()
+                            local port = Find_free_port(5000, 9000)
+                            return "http://localhost:" .. tostring(port)
+                        end
                     },
                     program = function()
                         Copy_appsettings_to_cwd()
