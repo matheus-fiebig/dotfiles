@@ -110,8 +110,8 @@ function Copy_appsettings_to_cwd()
     local appsettings = find_file("appsettings.json")
     local appsettings_development = find_file("appsettings.Development.json")
     local cwd = vim.fn.getcwd();
-    os.execute('cp -f' .. appsettings .. ' ' .. cwd .. ' > /dev/null')
-    os.execute('cp -f' .. appsettings_development .. ' ' .. cwd .. ' > /dev/null')
+    os.execute('cp --force ' .. appsettings .. ' ' .. cwd .. ' > /dev/null')
+    os.execute('cp --force ' .. appsettings_development .. ' ' .. cwd .. ' > /dev/null')
 end
 
 ---@return string
