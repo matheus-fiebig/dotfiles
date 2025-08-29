@@ -45,13 +45,13 @@ return {
             dap.configurations.cs = {
                 {
                     type = "coreclr",
-                    name = "attach - netcoredbg",
+                    name = "attach",
                     request = "attach",
                     processId = require('dap.utils').pick_process,
                 },
                 {
                     type = "coreclr",
-                    name = "launch - netcoredbg",
+                    name = "launch http",
                     request = "launch",
                     cwd = '${workspaceFolder}',
                     env = {
@@ -65,7 +65,7 @@ return {
                 },
                 {
                     type = "coreclr",
-                    name = "launch - netcoredbg - https",
+                    name = "launch https",
                     request = "launch",
                     cwd = '${workspaceFolder}',
                     env = {
