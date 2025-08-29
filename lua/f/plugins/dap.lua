@@ -73,8 +73,7 @@ return {
                             return "Development"
                         end,
                         ASPNETCORE_URLS = function()
-                            local socket = require("f.custom.utils.socket")
-                            local port = socket:find_free_port(5000, 9000)
+                            local port = Find_free_port(5000, 9000)
                             return "https://localhost:" .. tostring(port)
                         end
                     },

@@ -1,6 +1,5 @@
-local M = {}
 
-function M:get_occupied_tcp_ports()
+function Get_occupied_tcp_ports()
     local occupied_ports = {}
     local command
     local os_type
@@ -44,8 +43,8 @@ function M:get_occupied_tcp_ports()
 end
 
 -- Função que usa a lista de portas ocupadas para encontrar uma livre
-function M:find_free_port(start_port, end_port)
-    local occupied = self:get_occupied_tcp_ports()
+function Find_free_port(start_port, end_port)
+    local occupied = Get_occupied_tcp_ports()
     if not occupied then return nil end
 
     for port = start_port, end_port do
@@ -57,4 +56,3 @@ function M:find_free_port(start_port, end_port)
     return nil
 end
 
-return M
