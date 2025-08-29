@@ -60,6 +60,7 @@ return {
                         end,
                     },
                     program = function()
+                        Copy_appsettings_to_cwd()
                         return Build_and_run_dotnet();
                     end
                 },
@@ -78,6 +79,7 @@ return {
                         end
                     },
                     program = function()
+                        Copy_appsettings_to_cwd()
                         return Build_and_run_dotnet();
                     end
                 }

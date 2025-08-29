@@ -82,7 +82,7 @@ keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file e
 keymap.set('n', '<C-g>', "<cmd>Octo actions<CR>")
 
 keymap.set('n', '<C-f>', function()
-    Build_and_run_dotnet();
+    Copy_appsettings_to_cwd()
 end)
 
 --easy motion

@@ -105,6 +105,15 @@ local function run_dotnet_api(build_data)
     return dll_path;
 end
 
+---@return nil
+function Copy_appsettings_to_cwd()
+    local appsettings = find_file("appsettings.json")
+    local appsettings_development = find_file("appsettings.Development.json")
+    local cwd = vim.fn.getcwd();
+    os.execute('cp -f' .. appsettings .. ' ' .. cwd .. ' > /dev/null')
+    os.execute('cp -f' .. appsettings_development .. ' ' .. cwd .. ' > /dev/null')
+end
+
 ---@return string
 function Build_and_run_dotnet()
     local build_data = build_dotnet()
