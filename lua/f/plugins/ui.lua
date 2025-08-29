@@ -10,6 +10,7 @@ return {
             require 'barbar'.setup {}
         end
     },
+
     {
         'nvim-lualine/lualine.nvim',
         config = function()
@@ -39,32 +40,7 @@ return {
             })
         end
     },
-    {
-        'neanias/everforest-nvim',
-    },
-    {
-        'bartekjaszczak/distinct-nvim',
-        config = function()
-            require("distinct").setup({
-                doc_comments_different_color = true, -- Use different colour for documentation comments
-            })
 
-            vim.cmd("colorscheme distinct")
-        end
-    },
-    {
-        'bgwdotdev/gleam-theme-nvim',
-    },
-    {
-        "rose-pine/neovim",
-        name = "rose-pine",
-    },
-    {
-        "folke/tokyonight.nvim",
-    },
-    {
-        "gbprod/nord.nvim",
-    },
     {
         'folke/snacks.nvim',
         priority = 1000,
@@ -75,6 +51,7 @@ return {
             }
         }
     },
+
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = "nvim-tree/nvim-web-devicons",
@@ -155,4 +132,5 @@ return {
                 }))
             )
         end
-    }, }
+    }, 
+}

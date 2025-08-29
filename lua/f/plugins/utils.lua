@@ -44,10 +44,10 @@ local M = {
     }
 }
 
-if not os.getenv("IS_WORK") then
-    table.insert(M, {
-        "airblade/vim-rooter"
-    })
-end
+--if not os.getenv("IS_WORK") then
+--table.insert(M, {
+--"airblade/vim-rooter"
+--})
+--end
 
 return M
