@@ -57,3 +57,8 @@ source ~/.profile
 
 DELVE FOR GO
 go install github.com/go-delve/delve/cmd/dlv@latest
+
+
+OBS
+When running tests via dotnet test, the testhost.dll process executes them. By setting the VSTEST_HOST_DEBUG environment variable to 1, you can instruct testhost to pause execution and wait for a debugger to be attached before proceeding.
+VSTEST_HOST_DEBUG=1

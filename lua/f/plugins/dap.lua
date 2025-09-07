@@ -51,7 +51,7 @@ return {
                 },
                 {
                     type = "coreclr",
-                    name = "launch http",
+                    name = "launch",
                     request = "launch",
                     cwd = '${workspaceFolder}',
                     env = {
@@ -59,27 +59,9 @@ return {
                             return "Development"
                         end,
                         ASPNETCORE_URLS = function()
-                            local port = Find_free_port(5000, 9000)
-                            return "http://localhost:" .. tostring(port)
-                        end
-                    },
-                    program = function()
-                        Copy_appsettings_to_cwd()
-                        return Build_and_run_dotnet();
-                    end
-                },
-                {
-                    type = "coreclr",
-                    name = "launch https",
-                    request = "launch",
-                    cwd = '${workspaceFolder}',
-                    env = {
-                        ASPNETCORE_ENVIRONMENT = function()
-                            return "Development"
-                        end,
-                        ASPNETCORE_URLS = function()
-                            local port = Find_free_port(5000, 9000)
-                            return "https://localhost:" .. tostring(port)
+                            local https = "https://localhost:" .. tostring(Find_free_port(5000, 9000));
+                            local http = "http://localhost:" .. tostring(Find_free_port(5000, 9000));
+                            return https .. ';' .. http
                         end
                     },
                     program = function()
