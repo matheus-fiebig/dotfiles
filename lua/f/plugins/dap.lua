@@ -36,6 +36,12 @@ return {
 
             define_colors()
 
+            dap.adapters.godot = {
+                type = 'server',
+                host = '127.0.0.1',
+                port = 6006,
+            }
+
             dap.adapters.coreclr = {
                 type = "executable",
                 command = debuggers_folder .. "/packages/netcoredbg/netcoredbg",

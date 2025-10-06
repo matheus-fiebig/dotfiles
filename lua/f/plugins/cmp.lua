@@ -21,6 +21,7 @@ return {
     {
         'saghen/blink.cmp',
         dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip', 'fang2hou/blink-copilot' },
+        event = "InsertEnter",
         opts = {
             appearance = {
                 nerd_font_variant = 'mono',
@@ -54,11 +55,10 @@ return {
             },
             completion = {
                 documentation = { auto_show = true },
-                menu = {
-                    draw = {
-                        components = {
-                        },
-                    }
+                trigger = {
+                    prefetch_on_insert = false,
+                    show_on_insert_on_trigger_character = true,
+                    show_on_blocked_trigger_characters = {},
                 },
             },
             sources = {

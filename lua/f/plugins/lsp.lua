@@ -14,10 +14,11 @@ return {
 
             local lspconfig = require("lspconfig")
 
-
             lspconfig.ts_ls.setup {
                 filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
             }
+
+            lspconfig.angularls.setup {}
 
             lspconfig.csharp_ls.setup {
                 filetypes = { 'cs' }
@@ -45,7 +46,7 @@ return {
                 },
             }
 
-            lspconfig.angularls.setup {}
+            lspconfig.gdscript.setup({})
         end
     },
     {
@@ -53,4 +54,12 @@ return {
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         opts = {},
     },
+    {
+        'stevearc/conform.nvim',
+        opts = {
+            formatters_by_ft = {
+                gdscript = { 'gdformat' },
+            },
+        },
+    }
 }
