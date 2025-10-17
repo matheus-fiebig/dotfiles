@@ -1,13 +1,5 @@
 return {
     {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        enabled = true,
-        config = function()
-            require("darkvoid").setup({ glow = true })
-        end,
-    },
-    {
         '0xstepit/flow.nvim',
         config = function()
             require("flow").setup({
@@ -17,6 +9,14 @@ return {
                 },
             })
         end
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        enabled = true,
+        config = function()
+            require("darkvoid").setup({ glow = true })
+        end,
     },
     {
         "ntk148v/slack.nvim"

@@ -91,9 +91,7 @@ return {
                         },
                     },
                 },
-                filters = {
-                    custom = { ".DS_Store", ".uid" },
-                },
+                filters = {},
                 git = {
                     ignore = false,
                 },
@@ -132,5 +130,5 @@ return {
                 }))
             )
         end
-    }, 
+    },
 }
