@@ -1,5 +1,17 @@
 return {
     {
+        "seblyng/roslyn.nvim",
+        ft = "cs",
+        config = function()
+            vim.lsp.config("roslyn", {
+                settings = {
+                },
+            })
+            local roslyn = require("roslyn")
+            roslyn.setup()
+        end,
+    },
+    {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
         dependencies = {
@@ -7,7 +19,12 @@ return {
             "Issafalcon/lsp-overloads.nvim"
         },
         config = function()
-            require("mason").setup()
+            require("mason").setup({
+                registries = {
+                    'github:Crashdummyy/mason-registry',
+                    'github:mason-org/mason-registry',
+                },
+            })
             require("mason-lspconfig").setup({
                 automatic_installation = true
             })
@@ -20,7 +37,7 @@ return {
 
             lspconfig.angularls.setup {}
 
-            lspconfig.csharp_ls.setup {
+            lspconfig.roslynv4.setup {
                 filetypes = { 'cs' }
             }
 

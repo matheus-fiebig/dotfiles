@@ -8,26 +8,26 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
-vim.api.nvim_create_autocmd("VimEnter", {
-    desc = "Restore dotnet project",
-    callback = function()
-        local handle = io.popen("find . -name '*.sln' -print -quit")
-        if handle == nil then
-            return
-        end
+--vim.api.nvim_create_autocmd("VimEnter", {
+    --desc = "Restore dotnet project",
+    --callback = function()
+        --local handle = io.popen("find . -name '*.sln' -print -quit")
+        --if handle == nil then
+            --return
+        --end
 
-        local sln_file = handle:read("*a")
-        handle:close()
-        sln_file = sln_file:gsub("%s+", "")
+        --local sln_file = handle:read("*a")
+        --handle:close()
+        --sln_file = sln_file:gsub("%s+", "")
 
-        if sln_file and sln_file ~= "" then
-            os.execute("dotnet restore " .. sln_file)
-            Snacks.notify.info("Packages restored for " .. sln_file, { timeout = 5000, title = "Restore Info" })
-        else
-            Snacks.notify.info("No solutions found ", { timeout = 5000, title = "Restore Info" })
-        end
-    end,
-})
+        --if sln_file and sln_file ~= "" then
+            --os.execute("dotnet restore " .. sln_file)
+            --Snacks.notify.info("Packages restored for " .. sln_file, { timeout = 5000, title = "Restore Info" })
+        --else
+            --Snacks.notify.info("No solutions found ", { timeout = 5000, title = "Restore Info" })
+        --end
+    --end,
+--})
 
 vim.api.nvim_create_user_command('KulalaSendRequest', function(_)
     require("kulala").run()
