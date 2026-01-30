@@ -74,17 +74,16 @@ keymap.set("n", "T", function()
         require("dapui").eval(word_under_cursor)
     end
 end)
---keymap.set('n', '<leader>g', ":lua require'dap'.goto()<CR>", { noremap = true, silent = true }) No support for C#
-
--- tree view
-keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-
---octo
-keymap.set('n', '<C-g>', "<cmd>Octo actions<CR>")
-
 keymap.set('n', '<C-f>', function()
     Copy_appsettings_to_cwd()
 end)
+
+-- tree view
+keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+keymap.set("n", "<leader>eo", "<cmd>Oil<CR>", { desc = "Oil" })
+
+-- kulala
+keymap.set("n", "<leader>kl", "<cmd>KulalaSendRequest<CR>", { desc = "Kuala send request" })
 
 --easy motion
 vim.cmd [[nmap E <Plug>(easymotion-bd-f)]]

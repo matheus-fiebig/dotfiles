@@ -1,21 +1,10 @@
 return {
     {
-        '0xstepit/flow.nvim',
-        config = function()
-            require("flow").setup({
-                colors = {
-                    mode = "default",
-                    fluo = "pink",
-                },
-            })
-        end
-    },
-    {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         enabled = true,
         config = function()
-            require("darkvoid").setup({ glow = true })
+            require("everforest").setup({ glow = true })
         end,
     },
     {
@@ -27,4 +16,7 @@ return {
     {
         "gbprod/nord.nvim",
     },
+    {
+        "masisz/wisteria.nvim"
+    }
 }
