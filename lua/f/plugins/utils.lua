@@ -1,17 +1,17 @@
 local M = {
     {
-        'stevearc/oil.nvim',
-        config = function()
-            require("oil").setup()
-        end
-    },
-    {
         'easymotion/vim-easymotion'
     },
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         config = true
+    },
+    {
+        'gassayping/fried-rice.nvim',
+        config = function()
+            require("fried-rice").setup()
+        end
     },
     {
         "preservim/nerdcommenter",
@@ -47,6 +47,9 @@ local M = {
                 },
             })
         end,
+    },
+    {
+        'folke/zen-mode.nvim'
     }
 }
 

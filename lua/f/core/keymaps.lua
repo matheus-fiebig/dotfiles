@@ -81,6 +81,7 @@ end)
 -- tree view
 keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 keymap.set("n", "<leader>eo", "<cmd>Oil<CR>", { desc = "Oil" })
+keymap.set("n", "<leader>en", "<cmd>:Atone toggle<CR>", { desc = "Undo tree" })
 
 -- kulala
 keymap.set("n", "<leader>kl", "<cmd>KulalaSendRequest<CR>", { desc = "Kuala send request" })
