@@ -18,5 +18,8 @@ return {
     },
     {
         "masisz/wisteria.nvim"
+    },
+    {
+        'mphe/vim-gdscript4'
     }
 }

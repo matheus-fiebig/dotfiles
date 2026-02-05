@@ -45,7 +45,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end,
 })
 
+vim.api.nvim_create_user_command('RemoveNewLines', function(_)
+    vim.cmd("%s/\r//g")
+end, {})
+
 vim.api.nvim_create_user_command('KulalaSendRequest', function(_)
     require("kulala").run()
 end, {})
-

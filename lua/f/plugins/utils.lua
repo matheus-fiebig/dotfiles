@@ -49,7 +49,9 @@ local M = {
         end,
     },
     {
-        'folke/zen-mode.nvim'
+        'shortcuts/no-neck-pain.nvim',
+        config = function ()
+        end
     }
 }
 
