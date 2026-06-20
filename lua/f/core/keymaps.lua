@@ -59,7 +59,7 @@ keymap.set('n', '<leader>f', function() require('conform').format({ async = true
 keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "Go to declaration" })
 keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 keymap.set('n', '<leader>rf', "<cmd>Telescope lsp_references <CR>", { desc = "Go to definition" })
-keymap.set("n", "<leader>a", "<cmd>Telsecope lsp_document_symbols<CR>", { desc = "Toggle symbols" })
+keymap.set("n", "<leader>a", "<cmd>Trouble symbols toggle pinned=true win.relative=win win.position=left<CR>", { desc = "Toggle symbols" })
 keymap.set('n', '<leader>dn', "<cmd>Trouble diagnostics toggle focus=true<cr>",
     { desc = "Go to definition" })
 keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename" })

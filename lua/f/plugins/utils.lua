@@ -47,18 +47,7 @@ local M = {
                 },
             })
         end,
-    },
-    {
-        'shortcuts/no-neck-pain.nvim',
-        config = function ()
-        end
     }
 }
-
---if not os.getenv("IS_WORK") then
---table.insert(M, {
---"airblade/vim-rooter"
---})
---end
 
 return M

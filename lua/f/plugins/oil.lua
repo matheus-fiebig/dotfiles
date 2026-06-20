@@ -3,6 +3,9 @@ local M = {
         'stevearc/oil.nvim',
         config = function()
             require("oil").setup({
+                view_options = {
+                    show_hidden = false,
+                },
                 keymaps = {
                     ["g?"] = { "actions.show_help", mode = "n" },
                     ["<CR>"] = "actions.select",
