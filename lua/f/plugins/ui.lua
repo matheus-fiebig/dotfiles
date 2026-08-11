@@ -45,45 +45,34 @@ return {
         end
     },
     {
-        'folke/snacks.nvim',
-        priority = 1000,
-        lazy = false,
-        opts = {
-            notifier = {
-                style = "compact"
-            }
-        }
-    },
-    {
-        "gelguy/wilder.nvim",
+        "folke/noice.nvim",
+        event = "Verylazy",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify"
+        },
         config = function()
-            local wilder = require("wilder")
-            wilder.setup({ modes = { ":", "/", "?" } })
-            wilder.set_option('use_python_remote_plugin', 0)
-
-            wilder.set_option("pipeline", {
-                wilder.branch(
-                    wilder.cmdline_pipeline({
-                        fuzzy = 1,
-                    }),
-                    wilder.vim_search_pipeline({
-                        fuzzy = 1,
-                    })
-                ),
+            require("noice").setup({
+                view = "cmdline",
+                cmdline = {
+                    format = {
+                        search_down = {
+                            view = "cmdline",
+                        },
+                        search_up = {
+                            view = "cmdline",
+                        },
+                    },
+                },
+                lsp = {
+                    progress = { enabled = true },
+                    override = {
+                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                        ["vim.lsp.util.stylize_markdown"] = true,
+                        ["cmp.entry.get_documentation"] = true,
+                    },
+                }
             })
-
-            wilder.set_option(
-                "renderer",
-                wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
-                    highlighter = wilder.basic_highlighter(),
-                    pumblend = 5,
-                    min_width = "100%",
-                    min_height = "25%",
-                    max_height = "35%",
-                    left = { " ", wilder.popupmenu_devicons() },
-                    right = { " ", wilder.popupmenu_scrollbar() },
-                }))
-            )
         end
     },
 }

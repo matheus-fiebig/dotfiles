@@ -83,7 +83,7 @@ keymap.set("n", "<leader>ee", "<cmd>Oil<CR>", { desc = "Oil" })
 keymap.set("n", "<leader>et", "<cmd>:Atone toggle<CR>", { desc = "Undo tree" })
 
 -- kulala
-keymap.set("n", "<leader>kl", "<cmd>KulalaSendRequest<CR>", { desc = "Kuala send request" })
+keymap.set("n", "<leader>kl", "<cmd>CS<CR>", { desc = "Curl send request" })
 
 --easy motion
 vim.cmd [[nmap E <Plug>(easymotion-bd-f)]]

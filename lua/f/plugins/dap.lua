@@ -65,8 +65,8 @@ return {
                             return "Development"
                         end,
                         ASPNETCORE_URLS = function()
-                            local https = "https://localhost:" .. tostring(Find_free_port(5000, 9000));
-                            local http = "http://localhost:" .. tostring(Find_free_port(5000, 9000));
+                            local https = "https://localhost:" .. tostring(Find_free_port(5500, 9000));
+                            local http = "http://localhost:" .. tostring(Find_free_port(6000, 9000));
                             return https .. ';' .. http
                         end
                     },
