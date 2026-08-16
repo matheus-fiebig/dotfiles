@@ -13,4 +13,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("f.plugins")
 require("blink.cmp").build():pwait()
-vim.notify = require("notifiy")
+vim.notify = require("notify")

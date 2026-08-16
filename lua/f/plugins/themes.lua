@@ -21,8 +21,5 @@ return {
     },
     {
         'mphe/vim-gdscript4'
-    },
-    {
-        "nyoom-engineering/oxocarbon.nvim"
     }
 }
