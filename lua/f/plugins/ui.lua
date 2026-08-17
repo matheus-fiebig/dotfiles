@@ -53,8 +53,8 @@ return {
         },
         config = function()
             require("noice").setup({
-                view = "cmdline",
                 cmdline = {
+                    view = "cmdline",
                     format = {
                         search_down = {
                             view = "cmdline",
