@@ -79,7 +79,7 @@ keymap.set('n', '<C-f>', function()
 end)
 
 -- tree view
-keymap.set("n", "<leader>ee", "<cmd>Oil<CR>", { desc = "Oil" })
+keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Oil" })
 keymap.set("n", "<leader>et", "<cmd>:Atone toggle<CR>", { desc = "Undo tree" })
 
 -- kulala
