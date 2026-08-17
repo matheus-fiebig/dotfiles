@@ -38,9 +38,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
         if sln_file and sln_file ~= "" then
             os.execute("dotnet restore " .. sln_file)
-            Snacks.notify.info("Packages restored for " .. sln_file, { timeout = 5000, title = "Restore Info" })
+            vim.notify("Packages restored for " .. sln_file, "info", { timeout = 5000, title = "Restore Status" })
         else
-            Snacks.notify.info("No solutions found ", { timeout = 5000, title = "Restore Info" })
+            vim.notify("No solutions found ", "info", { timeout = 5000, title = "Restore Status" })
         end
     end,
 })
@@ -49,6 +49,6 @@ vim.api.nvim_create_user_command('RemoveNewLines', function(_)
     vim.cmd("%s/\r//g")
 end, {})
 
-vim.api.nvim_create_user_command('KulalaSendRequest', function(_)
-    require("kulala").run()
+vim.api.nvim_create_user_command('CS', function(_)
+    require("curl").execute_curl()
 end, {})

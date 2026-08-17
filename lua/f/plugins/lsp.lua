@@ -12,11 +12,12 @@ return {
         end,
     },
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         build = ":MasonUpdate",
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
-            "Issafalcon/lsp-overloads.nvim"
+            "Issafalcon/lsp-overloads.nvim",
+            "neovim/nvim-lspconfig"
         },
         config = function()
             require("mason").setup({
@@ -29,19 +30,22 @@ return {
                 automatic_installation = true
             })
 
-            local lspconfig = require("lspconfig")
+            local lspconfig = vim.lsp
 
-            lspconfig.ts_ls.setup {
+            lspconfig.config("ts_ls", {
                 filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-            }
+            })
 
-            lspconfig.angularls.setup {}
+            lspconfig.config("angularls", {
+                filetypes = { 'typescript', 'javascript' },
+            })
 
-            lspconfig.roslynv4.setup {
+            lspconfig.config("roslynv4", {
                 filetypes = { 'cs' }
-            }
+            })
 
-            lspconfig.lua_ls.setup {
+            lspconfig.config("lua_ls", {
+                filetypes = { 'lua' },
                 settings = {
                     Lua = {
                         runtime = {
@@ -61,9 +65,12 @@ return {
                         },
                     },
                 },
-            }
+            })
 
-            lspconfig.gdscript.setup({})
+
+            lspconfig.config("lua_ls", {
+                filetypes = { 'gdscript' }
+            })
         end
     },
     {

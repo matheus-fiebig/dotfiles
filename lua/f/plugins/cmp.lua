@@ -1,26 +1,8 @@
 return {
     {
-        "github/copilot.vim",
-        cmd = "Copilot",
-        init = function()
-            vim.g.copilot_no_maps = true
-            vim.g.copilot_proxy_strict_ssl = false
-            vim.g.copilot_proxy = os.getenv("HTTP_PROXY")
-        end,
-        config = function()
-            vim.api.nvim_create_augroup("github_copilot", { clear = true })
-            vim.api.nvim_create_autocmd({ "FileType", "BufUnload" }, {
-                group = "github_copilot",
-                callback = function(args)
-                    vim.fn["copilot#On" .. args.event]()
-                end
-            })
-            vim.fn["copilot#OnFileType"]()
-        end
-    },
-    {
         'saghen/blink.cmp',
-        dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip', 'fang2hou/blink-copilot' },
+        dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip', 'saghen/blink.lib' },
+        build = "cargo build --release",
         event = "InsertEnter",
         opts = {
             appearance = {
@@ -62,16 +44,10 @@ return {
                 },
             },
             sources = {
-                default = { 'lsp', 'buffer', 'path', 'snippets', 'copilot' },
+                default = { 'lsp', 'buffer', 'path', 'snippets' },
                 per_filetype = { sql = { 'dadbod' } },
                 providers = {
                     dadbod = { module = "vim_dadbod_completion.blink" },
-                    copilot = {
-                        name = "copilot",
-                        module = "blink-copilot",
-                        score_offset = 100,
-                        async = true,
-                    },
                     lsp = {
                         min_keyword_length = 0,
                         score_offset = 0,

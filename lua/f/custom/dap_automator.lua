@@ -69,7 +69,7 @@ end
 local function get_dotnet_version(csproj_path)
     local file = io.open(csproj_path, "r")
     if not file then
-        Snacks.notifier("Could not open file: " .. csproj_path, "error")
+        vim.notify("Could not open file: " .. csproj_path, "error")
         return '';
     end
 
@@ -118,15 +118,15 @@ end
 function Build_and_run_dotnet()
     local build_data = build_dotnet()
     if tostring(build_data.status) == '0' then
-        Snacks.notify.info('Build succeded with status code ' .. build_data.status,
+        vim.notify('Build succeded with status code ' .. build_data.status, "info",
             { timeout = 5000, title = "On Build" })
     else
-        Snacks.notify.error('Build error with status code ' .. build_data.status, { timeout = 5000, title = "On Build" })
+        vim.notify('Build error with status code ' .. build_data.status, "error", { timeout = 5000, title = "On Build" })
         vim.diagnostic.setqflist()
         return ""
     end
 
     local dll = run_dotnet_api(build_data)
-    Snacks.notify.info('Debugging file ' .. build_data.filename, { timeout = 5000, title = "On Run" })
+    vim.notify('Debugging file ' .. build_data.filename, "info", { timeout = 5000, title = "On Run" })
     return dll
 end
